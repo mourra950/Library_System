@@ -1,8 +1,8 @@
 package Classes;
 
-class book {
+public class book {
     private String title;
-    private String id;
+    private int id;
     private String author;
     private String genre;
     private String topic;
@@ -11,7 +11,7 @@ class book {
     private boolean is_available;//available to bo borrowed
 
 
-    public book(String title,String id,String author,String genre,String topic,int daily_limit,boolean can_be_checked_out,boolean is_available){
+    public book(String title,int id,String author,String genre,String topic,int daily_limit,boolean can_be_checked_out,boolean is_available){
         this.title=title;
         this.id=id;
         this.author=author;
@@ -20,6 +20,7 @@ class book {
         this.daily_limit=daily_limit;
         this.can_be_checked_out=can_be_checked_out;
         this.is_available=is_available;
+        connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Topic`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"','"+topic+"');");
 
     }
 
@@ -36,11 +37,11 @@ class book {
         b.is_available=true;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

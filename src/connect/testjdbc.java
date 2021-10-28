@@ -1,4 +1,6 @@
+
 package connect;
+
 import Classes.User;
 
 import java.sql.Connection;
@@ -40,7 +42,6 @@ public class testjdbc {
     }
 
     public static void main(String[] args) {
-
     }
 }
 
