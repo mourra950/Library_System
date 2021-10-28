@@ -16,13 +16,15 @@ class book {
         this.id=id;
         this.author=author;
         this.genre=genre;
+        this.topic=topic;
         this.daily_limit=daily_limit;
         this.can_be_checked_out=can_be_checked_out;
         this.is_available=is_available;
+
     }
 
     public void borrow(book b){
-        if (b.can_be_checked_out==true && b.is_available==true){
+        if (b.can_be_checked_out && b.is_available){
             is_available=false;
             System.out.println("you should return before "+b.daily_limit+" days");
         }
