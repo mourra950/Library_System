@@ -41,9 +41,7 @@ public class User{
     }
     public boolean BorrowedValid(){
 
-        if( BooksBorrowed>5)
-            return false;
-        return true;
+        return BooksBorrowed <= 5;
     }
 
     public boolean IsDeadLine() {
