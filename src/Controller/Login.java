@@ -2,11 +2,18 @@ package Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Login {
@@ -35,7 +42,14 @@ public class Login {
     }
 
     @FXML
-    void LoginUser(ActionEvent event) {
+    void LoginUser(ActionEvent event) throws IOException {
+        Parent loginparent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
+        Scene loginScene = new Scene(loginparent);
+        Stage loginstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        loginstage.setTitle("main");
+        loginstage.setScene(loginScene);
+        loginstage.centerOnScreen();
+        loginstage.show();
 
     }
 
