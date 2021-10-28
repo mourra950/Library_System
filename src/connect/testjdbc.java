@@ -18,12 +18,10 @@ public class testjdbc {
             Statement s = conn.createStatement();
 
             //INSERT INTO `sql11418209`.`signup` (`mail`, `Name`, `Surname`, `Password`, `address`,`gender`) VALUES ('"+s1+"','"+s2+"', '"+s3+"', '"+s4+"', '"+s5+"','"+s6+"');"
-            s.executeUpdate(a);
             //User user = new User("mohamed","mostafa ragab","010002222222");
-
             // s.executeUpdate("INSERT INTO `main`.`Users`(`Mail`,`Name`,`Password`) VALUES ('omar',NULL,NULL);");
             //"UPDATE `main`.`User` SET `Borrowed Books` = '" + k + "' WHERE (`Name` = '" + Name + "');"
-
+            s.executeUpdate(a);
             conn.close();
 
             System.out.println("Connection to SQLite has been established.");
