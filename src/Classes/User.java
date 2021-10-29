@@ -9,6 +9,7 @@ public class User{
     private String number;
     private LocalDate StartDate;
     private LocalDate EndDate;
+    private LocalDate BorrowDays;
     private int BooksBorrowed;
 
 
@@ -32,6 +33,10 @@ public class User{
         String s1 = StartDate.toString();
         connect.testjdbc.connect("UPDATE `main`.`User` SET `StartDate` = '" + s1 + "' WHERE (`Name` = '" + Name + "');");
 
+    }
+    public LocalDate setBorrowDays(LocalDate startDate, LocalDate endDate){
+        //BorrowDays= endDate-startDate ;
+    return BorrowDays;
     }
     public void setBooksBorrowed(int k){
 
