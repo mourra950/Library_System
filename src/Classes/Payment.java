@@ -8,16 +8,16 @@ public class Payment {
         this.price = price;
         this.quantity = quantity;
     }
-    public void discountvalue(int quantity){
+    public double discountvalue(int quantity){
         if (quantity>1 && quantity<=3 )
         {
-            discount=(price*quantity)*0.25;
+            return(price*quantity)*0.25;
         }
         if (quantity>3 && quantity<=5 )
         {
-            discount=(price*quantity)*0.5;
+            return (price*quantity)*0.5;
         }
-
+        return 0;
     }
     public void setLatefees(User a) {
         if (a.IsDeadLine()) {
@@ -29,7 +29,7 @@ public class Payment {
     }
     public void display(){
         System.out.println("your number of borrowed books "+ quantity);
-        System.out.println("your discount is "+discount);
+        System.out.println("your discount is "+discountvalue(quantity));
         System.out.println("the total price is "+getfprice());
     }
 
