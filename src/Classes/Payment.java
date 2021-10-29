@@ -24,10 +24,13 @@ public class Payment {
             discount = 0;
         }
     }
+    public double getfprice(){
+        return ((price*quantity)-discount);
+    }
     public void display(){
         System.out.println("your number of borrowed books "+ quantity);
         System.out.println("your discount is "+discount);
-        System.out.println("the total price is "+((quantity*price)-discount));
+        System.out.println("the total price is "+getfprice());
     }
 
 }
