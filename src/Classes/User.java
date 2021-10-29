@@ -11,6 +11,7 @@ public class User{
     private LocalDate EndDate;
     private LocalDate BorrowDays;
     private int BooksBorrowed;
+    private int daysLate;
 
 
     public User(String Name, String address, String number){
@@ -34,10 +35,6 @@ public class User{
         connect.testjdbc.connect("UPDATE `main`.`User` SET `StartDate` = '" + s1 + "' WHERE (`Name` = '" + Name + "');");
 
     }
-    public LocalDate setBorrowDays(LocalDate startDate, LocalDate endDate){
-        //BorrowDays= endDate-startDate ;
-    return BorrowDays;
-    }
     public void setBooksBorrowed(int k){
 
         BooksBorrowed = k;
@@ -54,4 +51,10 @@ public class User{
             return true;
         return false;
     }
+    /*public double getdaysLate() {
+        if (IsDeadLine() == true) {
+
+        }
+    }
+*/
 }

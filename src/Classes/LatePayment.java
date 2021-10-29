@@ -7,10 +7,9 @@ public class LatePayment extends Payment{
         super(price, quantity);
     }
 
-//    public LatePayment(int daysLate, double latefees) {
+//    public LatePayment(double price, int quantity,int daysLate) {
 //        super();
 //        this.daysLate = daysLate;
-//        this.latefees = latefees;
 //    }
 
     public int getDaysLate() {
@@ -28,5 +27,6 @@ public class LatePayment extends Payment{
     public void setLatefees(double latefees) {
         this.latefees = latefees;
     }
+
 
 }
