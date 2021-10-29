@@ -19,6 +19,11 @@ public class Payment {
         }
 
     }
+    public void setLatefees(User a) {
+        if (a.IsDeadLine()) {
+            discount = 0;
+        }
+    }
     public void display(){
         System.out.println("your number of borrowed books "+ quantity);
         System.out.println("your discount is "+discount);
