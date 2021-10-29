@@ -9,9 +9,7 @@ public class User{
     private String number;
     private LocalDate StartDate;
     private LocalDate EndDate;
-    private LocalDate BorrowDays;
     private int BooksBorrowed;
-    private int daysLate;
 
 
     public User(String Name, String address, String number){
@@ -51,10 +49,4 @@ public class User{
             return true;
         return false;
     }
-    /*public double getdaysLate() {
-        if (IsDeadLine() == true) {
-
-        }
-    }
-*/
 }

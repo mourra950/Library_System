@@ -1,5 +1,5 @@
 package Classes;
-public class LatePayment extends Payment{
+public class LatePayment extends Payment {
     private int daysLate;
     private double latefees;
 
@@ -27,6 +27,11 @@ public class LatePayment extends Payment{
     public void setLatefees(double latefees) {
         this.latefees = latefees;
     }
-
-
+    public double getdaysLate(User a) {
+        if (a.IsDeadLine() == true) {
+discount=0;
+        }
+        return discount;
+    }
 }
+
