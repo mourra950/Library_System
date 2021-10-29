@@ -24,6 +24,7 @@ public class Payment {
             discount = 0;
         }
     }
+    //want to merge between setlatefees and getfprice.
     public double getfprice(){
         return ((price*quantity)-discount);
     }
