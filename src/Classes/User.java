@@ -15,25 +15,10 @@ public class User extends Person{
         connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Mail`,`Name`,`Password`) VALUES ('"+super.name+"','"+super.address+"','"+super.number+"');");
 
     }
+    public String getUserName(){return super.name;}
 
-    /* public void setStartDate(LocalDate startDate) {
-        StartDate = startDate;
-        String s = StartDate.toString();
-        connect.testjdbc.connect("UPDATE `main`.`User` SET `StartDate` = '" + s + "' WHERE (`Name` = '" + Name + "');");
-    }
-    public void setEndDate(LocalDate endDate){
 
-        EndDate=endDate;
-        String s1 = StartDate.toString();
-        connect.testjdbc.connect("UPDATE `main`.`User` SET `StartDate` = '" + s1 + "' WHERE (`Name` = '" + Name + "');");
 
-    }
-    public void setBooksBorrowed(int k){
-
-        BooksBorrowed = k;
-        connect.testjdbc.connect("UPDATE `main`.`User` SET `Borrowed Books` = '" + BooksBorrowed + "' WHERE (`Name` = '" + Name + "');");
-
-    } */
     public boolean BorrowedValid(){
 
         return BooksBorrowed <= 5;

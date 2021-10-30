@@ -27,6 +27,7 @@ public class book {
         connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Topic`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"','"+topic+"');");
 
     }
+
     public book(String title,int id,String genre,String topic){
         setTitle(title);
         setId(id);
@@ -46,6 +47,8 @@ public class book {
     public void return_book(book b){
         b.is_available=true;
     }
+    public LocalDate getStartDate(){return StartDate;}
+    public LocalDate getEndDate(){return EndDate;}
 
     public int getId() {
         return id;
