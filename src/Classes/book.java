@@ -3,8 +3,10 @@ package Classes;
 import java.time.LocalDate;
 
 public class book {
+    private int count;
+    private int BorrowCounter;
     private String title;
-    private int id;
+    private String id;
     private String author;
     private String genre;
     private LocalDate StartDate;
@@ -18,6 +20,7 @@ public class book {
         setId(id);
         setAuthor(author);
         setGenre(genre);
+        this.count = 0; //amount of books borrowed by a new book is zero
         this.can_be_checked_out=can_be_checked_out;
         this.is_available=is_available;
         connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"');");
