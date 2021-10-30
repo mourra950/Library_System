@@ -12,7 +12,7 @@ public class User extends Person{
        super();
 
 
-        connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Name`,`Address`,`Password`) VALUES ('"+super.name+"','"+super.address+"','"+super.number+"');");
+        connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Mail`,`Name`,`Password`) VALUES ('"+super.name+"','"+super.address+"','"+super.number+"');");
 
     }
 
