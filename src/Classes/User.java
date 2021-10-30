@@ -7,8 +7,7 @@ public class User{
     private String Name;
     private String address;
     private String number;
-    private LocalDate StartDate;
-    private LocalDate EndDate;
+
     private int BooksBorrowed;
 
 
@@ -21,7 +20,7 @@ public class User{
 
     }
 
-    public void setStartDate(LocalDate startDate) {
+    /* public void setStartDate(LocalDate startDate) {
         StartDate = startDate;
         String s = StartDate.toString();
         connect.testjdbc.connect("UPDATE `main`.`User` SET `StartDate` = '" + s + "' WHERE (`Name` = '" + Name + "');");
@@ -38,15 +37,11 @@ public class User{
         BooksBorrowed = k;
         connect.testjdbc.connect("UPDATE `main`.`User` SET `Borrowed Books` = '" + BooksBorrowed + "' WHERE (`Name` = '" + Name + "');");
 
-    }
+    } */
     public boolean BorrowedValid(){
 
         return BooksBorrowed <= 5;
     }
 
-    public boolean IsDeadLine() {
-        if (LocalDate.now().isAfter(EndDate))
-            return true;
-        return false;
-    }
+
 }

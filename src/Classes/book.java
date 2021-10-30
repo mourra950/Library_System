@@ -1,11 +1,15 @@
 package Classes;
 
+import java.time.LocalDate;
+
 public class book {
     private String title;
     private int id;
     private String author;
     private String genre;
     private String topic;
+    private LocalDate StartDate;
+    private LocalDate EndDate;
     private int daily_limit;
     private boolean can_be_checked_out;
     private boolean is_available;//available to bo borrowed
@@ -105,5 +109,10 @@ public class book {
 
     public void setIs_available(boolean is_available) {
         this.is_available = is_available;
+    }
+    public boolean IsDeadLine() {
+        if (LocalDate.now().isAfter(EndDate))
+            return true;
+        return false;
     }
 }
