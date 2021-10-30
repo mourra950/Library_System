@@ -1,4 +1,9 @@
-package Classes;
+/*package Classes;
 
-public class Librarian {
-}
+public class Librarian extends Person{
+    public Librarian(){
+        super();
+        connect.testjdbc.connect("INSERT INTO `main`.`Librarians`(`Name`,`address`,`number`) VALUES ('"+super.name+"','"+super.address+"','"+super.number+"');");
+
+    }
+}*/
