@@ -7,7 +7,7 @@ import java.sql.*;
 
 
 public class LibraryCollection {
-    public static void AddBook(String title, int id, String author, String genre, String StartDate,String EndDate){
+    public static void AddBook(String title, int id, String author, String genre){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
@@ -17,8 +17,6 @@ public class LibraryCollection {
             ps.setInt(2, id);
             ps.setString(3, author);
             ps.setString(4,genre);
-            ps.setString(5, StartDate);
-            ps.setString(6,EndDate);
             ps.execute();
             System.out.println("Data has been inserted");
         }catch (SQLException e){
@@ -35,11 +33,11 @@ public class LibraryCollection {
             ps.execute();
             System.out.println("Book has been deleted!");
         }catch(Exception e){
-            //TODO: handle eception
+            //TODO: handle exception
             System.out.println(e.toString());
         }
     }
-    public static void UdateBookTitle(String title,int id){
+    public static void UpdateBookTitle(String title,int id){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
@@ -54,7 +52,7 @@ public class LibraryCollection {
             System.out.println(e.toString());
         }
     }
-    public static void UdateBookgGenre(String genre,int id){
+    public static void UpdateBookgGenre(String genre,int id){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
@@ -65,41 +63,11 @@ public class LibraryCollection {
             ps.execute();
             System.out.println("genre has been updated");
         }catch(SQLException e){
-            //TODO: handle eception
+            //TODO: handle exception
             System.out.println(e.toString());
         }
     }
-    public static void UdateBookSatrtDate(String StartDate,int id){
-        Connection con = testjdbc.connect();
-        PreparedStatement ps = null;
-        try{
-            String sql = "UPDATE Books SET StartDate = ? WHERE Id = ? ";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, StartDate);
-            ps.setInt(2, id);
-            ps.execute();
-            System.out.println("topic has been updated");
-        }catch(SQLException e){
-            //TODO: handle eception
-            System.out.println(e.toString());
-        }
-    }
-    public static void UdateBookEndDateDate(String EndDate,int id){
-        Connection con = testjdbc.connect();
-        PreparedStatement ps = null;
-        try{
-            String sql = "UPDATE Books SET EndDate = ? WHERE Id = ? ";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, EndDate);
-            ps.setInt(2, id);
-            ps.execute();
-            System.out.println("topic has been updated");
-        }catch(SQLException e){
-            //TODO: handle eception
-            System.out.println(e.toString());
-        }
-    }
-    public static void UdateBookAuthor(String author,int id){
+    public static void UpdateBookAuthor(String author,int id){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
@@ -110,7 +78,7 @@ public class LibraryCollection {
             ps.execute();
             System.out.println("auhtor has been updated!");
         }catch(SQLException e){
-            //TODO: handle eception
+            //TODO: handle exception
             System.out.println(e.toString());
         }
     }
