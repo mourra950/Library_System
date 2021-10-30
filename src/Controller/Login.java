@@ -43,14 +43,15 @@ public class Login {
 
     @FXML
     void LoginUser(ActionEvent event) throws IOException {
-        Parent loginparent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
-        Scene loginScene = new Scene(loginparent);
-        Stage loginstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        loginstage.setTitle("main");
-        loginstage.setScene(loginScene);
-        loginstage.centerOnScreen();
-        loginstage.show();
-
+        //if(Mail.getText() && Password.getText()) {
+            Parent loginparent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
+            Scene loginScene = new Scene(loginparent);
+            Stage loginstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            loginstage.setTitle("main");
+            loginstage.setScene(loginScene);
+            loginstage.centerOnScreen();
+            loginstage.show();
+        //}
     }
 
     @FXML
