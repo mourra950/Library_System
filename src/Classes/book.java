@@ -7,7 +7,6 @@ public class book {
     private int id;
     private String author;
     private String genre;
-    private String topic;
     private LocalDate StartDate;
     private LocalDate EndDate;
     private int duration;
