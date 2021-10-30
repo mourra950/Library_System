@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="EnterTopic" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookView">
+   <children>
+      <VBox layoutX="175.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="375.0">
+               <columns>
+                  <TableColumn fx:id="Title" prefWidth="75.0" text="Title" />
+                  <TableColumn fx:id="Id" prefWidth="75.0" text="Id" />
+                  <TableColumn fx:id="Author" prefWidth="75.0" text="Author" />
+                  <TableColumn fx:id="Genre" prefWidth="75.0" text="Genre" />
+                  <TableColumn fx:id="Topic" prefWidth="75.0" text="Topic" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <TextField fx:id="EnterAuthor" layoutX="15.0" layoutY="14.0" promptText="Enter Author" />
+      <Button fx:id="Search" layoutX="65.0" layoutY="219.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <TextField fx:id="Enter" layoutX="15.0" layoutY="52.0" promptText="Enter Genre" />
+      <TextField fx:id="En" layoutX="15.0" layoutY="90.0" promptText="Enter Id" />
+      <TextField fx:id="EnterTitle" layoutX="16.0" layoutY="123.0" promptText="Enter Title" />
+      <TextField fx:id="EnterId4" layoutX="16.0" layoutY="160.0" promptText="Enter Topic" />
+      <Button fx:id="Add" layoutX="72.0" layoutY="268.0" mnemonicParsing="false" onAction="#add" text="Add" />
+      <Button fx:id="Delete" layoutX="66.0" layoutY="321.0" mnemonicParsing="false" onAction="#deletee" text="Delete" />
+   </children>
+</AnchorPane>
