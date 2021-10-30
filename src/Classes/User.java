@@ -2,51 +2,44 @@ package Classes;
 import java.time.LocalDate;
 
 
-public class User{
+public class User extends Person{
 
-    private String Name;
-    private String address;
-    private String number;
-    private LocalDate StartDate;
-    private LocalDate EndDate;
+    private String person_id;
+
     private int BooksBorrowed;
 
 
-    public User(String Name, String address, String number){
+    public User(String k){
+       super();
+    person_id = k;
 
-        this.Name=Name;
-        this.address=address;
-        this.number=number;
-        connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Mail`,`Name`,`Password`) VALUES ('"+Name+"','"+address+"','"+number+"');");
-
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        StartDate = startDate;
-        String s = StartDate.toString();
-        connect.testjdbc.connect("UPDATE `main`.`User` SET `StartDate` = '" + s + "' WHERE (`Name` = '" + Name + "');");
-    }
-    public void setEndDate(LocalDate endDate){
-
-        EndDate=endDate;
-        String s1 = StartDate.toString();
-        connect.testjdbc.connect("UPDATE `main`.`User` SET `StartDate` = '" + s1 + "' WHERE (`Name` = '" + Name + "');");
+        connect.testjdbc.connect("INSERT INTO `main`.`person`(`Mail`,`Name`,`Password`) VALUES ('"+super.name+"','"+super.Email+"','"+super.Password+"');");
+        connect.testjdbc.connect("INSERT INTO `main`.`Users`(`person_id`) VALUES ('"+person_id+"');");
 
     }
-    public void setBooksBorrowed(int k){
+    public String getUserName(){return super.name;}
+    public String getPersonId(){return person_id;}
 
-        BooksBorrowed = k;
-        connect.testjdbc.connect("UPDATE `main`.`User` SET `Borrowed Books` = '" + BooksBorrowed + "' WHERE (`Name` = '" + Name + "');");
 
-    }
+
     public boolean BorrowedValid(){
-
         return BooksBorrowed <= 5;
+
     }
 
-    public boolean IsDeadLine() {
-        if (LocalDate.now().isAfter(EndDate))
-            return true;
-        return false;
+
+    public void borrow(book b,int duration){
+        if (b.getCan_be_checked_out() && b.getIs_available()){
+            b.setIs_available(false);
+            b.setStartDate(LocalDate.now());
+            b.setEndDate(b.getStartDate().plusDays(duration));
+            System.out.println("you should return before "+b.getEndDate()+" days");
+
+        }
+        else{
+            System.out.println("Book cannot be borrowed");
+        }
     }
-}
+    }
+
+

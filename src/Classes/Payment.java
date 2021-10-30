@@ -20,7 +20,7 @@ public class Payment {
         }
         return 0;
     }
-    public void setLatefees(User a) {
+    public void setLatefees(book a) {
         if (a.IsDeadLine()) {
             latesfees=getfprice()*0.1;
         }
