@@ -23,6 +23,12 @@ public class book {
         connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Topic`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"','"+topic+"');");
 
     }
+    public book(String title,int id,String genre,String topic){
+        setTitle(title);
+        setId(id);
+        setGenre(genre);
+        setTopic(topic);
+    }
 
     public void borrow(book b){
         if (b.can_be_checked_out && b.is_available){

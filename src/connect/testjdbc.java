@@ -10,6 +10,18 @@ import java.sql.Statement;
 
 
 public class testjdbc {
+    public static Connection connect(){
+        Connection con = null;
+        try{
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:LibraryDB.db"); //connecting to our database
+            System.out.println("Connected!");
+        } catch(ClassNotFoundException | SQLException e){
+            //TODO Aauto-generated catch block
+            System.out.println(e+"");
+        }
+        return con;
+    }
 
     public static void connect(String a) {
         Connection conn = null;
