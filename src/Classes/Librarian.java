@@ -20,7 +20,7 @@ public class Librarian extends Person{
     public void setBooksBorrowed(User K,int i){
         String s = K.getUserName();
 
-        connect.testjdbc.connect("UPDATE `main`.`User` SET `Borrowed Books` = '" + i + "' WHERE (`Name` = '" + s + "');");
+        connect.testjdbc.connect("UPDATE `main`.`people` SET `Borrowed Books` = '" + i + "' WHERE (`Name` = '" + s + "');");
 
     }
 }

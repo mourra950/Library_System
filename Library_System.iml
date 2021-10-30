@@ -12,5 +12,6 @@
     <orderEntry type="library" name="lib2" level="project" />
     <orderEntry type="library" name="lib3" level="project" />
     <orderEntry type="library" name="lib4" level="project" />
+    <orderEntry type="library" name="sqlite-jdbc-3.36.0.3" level="project" />
   </component>
 </module>

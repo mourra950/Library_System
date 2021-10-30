@@ -1,17 +1,28 @@
 package Classes;
 
+import java.time.LocalDate;
+
 public class book {
     private String title;
     private int id;
     private String author;
     private String genre;
     private String topic;
+    private LocalDate StartDate;
+    private LocalDate EndDate;
     private int daily_limit;
     private boolean can_be_checked_out;
     private boolean is_available;//available to bo borrowed
 
+    public book(String title, int id, String author, String genre, String topic) {
+        this.title = title;
+        this.id = id;
+        this.author = author;
+        this.genre = genre;
+        this.topic = topic;
+    }
 
-    public book(String title,int id,String author,String genre,String topic,int daily_limit,boolean can_be_checked_out,boolean is_available){
+    public book(String title, int id, String author, String genre, String topic, int daily_limit, boolean can_be_checked_out, boolean is_available){
         this.title=title;
         this.id=id;
         this.author=author;
@@ -23,6 +34,7 @@ public class book {
         connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Topic`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"','"+topic+"');");
 
     }
+
     public book(String title,int id,String genre,String topic){
         setTitle(title);
         setId(id);
@@ -42,6 +54,8 @@ public class book {
     public void return_book(book b){
         b.is_available=true;
     }
+    public LocalDate getStartDate(){return StartDate;}
+    public LocalDate getEndDate(){return EndDate;}
 
     public int getId() {
         return id;
@@ -105,5 +119,10 @@ public class book {
 
     public void setIs_available(boolean is_available) {
         this.is_available = is_available;
+    }
+    public boolean IsDeadLine() {
+        if (LocalDate.now().isAfter(EndDate))
+            return true;
+        return false;
     }
 }

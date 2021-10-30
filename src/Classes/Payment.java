@@ -4,6 +4,7 @@ public class Payment {
     double price;
     int quantity;
     double discount;
+    double latesfees;
     public Payment(double price, int quantity) {
         this.price = price;
         this.quantity = quantity;
@@ -19,19 +20,18 @@ public class Payment {
         }
         return 0;
     }
-    public void setLatefees(User a) {
+    public void setLatefees(book a) {
         if (a.IsDeadLine()) {
-            discount = 0;
+            latesfees=getfprice()*0.1;
         }
     }
-    //want to merge between setlatefees and getfprice.
     public double getfprice(){
         return ((price*quantity)-discount);
     }
     public void display(){
         System.out.println("your number of borrowed books "+ quantity);
         System.out.println("your discount is "+discountvalue(quantity));
-        System.out.println("the total price is "+getfprice());
+        System.out.println("the total price is "+(getfprice()+latesfees));
     }
 
 }

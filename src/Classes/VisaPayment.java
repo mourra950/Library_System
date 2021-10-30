@@ -36,8 +36,8 @@ public class VisaPayment extends Payment
     public void display() {
         System.out.println("your number of borrowed books "+ quantity);
         System.out.println("your discount is "+discountvalue(quantity));
-      System.out.println("The payment of $" + (getfprice()) + " using the card " + getNumber()
-                + ",  and expires at "	+ getExpDate() + ", and the owner name: " + getName() + ".");
+      System.out.println("The payment of $" + ((getfprice()+latesfees) + " using the card " + getNumber()
+                + ",  and expires at "	+ getExpDate() + ", and the owner name: " + getName() + "."));
     }
 
 }
