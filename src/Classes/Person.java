@@ -2,14 +2,14 @@ package Classes;
 
 public class Person {
     protected String name;
-    protected String address;
-    protected String number;
+    protected String Email;
+    protected String Password;
 
-    public Person(String name, String address, String number){
+    public Person(String name, String Email, String Password){
 
         this.name=name;
-        this.address=address;
-        this.number=number;
+        this.Email=Email;
+        this.Password=Password;
 
     }
 public Person(){
