@@ -2,21 +2,17 @@ package Classes;
 import java.time.LocalDate;
 
 
-public class User{
+public class User extends Person{
 
-    private String Name;
-    private String address;
-    private String number;
 
     private int BooksBorrowed;
 
 
-    public User(String Name, String address, String number){
+    public User(){
+       super();
 
-        this.Name=Name;
-        this.address=address;
-        this.number=number;
-        connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Mail`,`Name`,`Password`) VALUES ('"+Name+"','"+address+"','"+number+"');");
+
+        connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Mail`,`Name`,`Password`) VALUES ('"+super.name+"','"+super.address+"','"+super.number+"');");
 
     }
 
