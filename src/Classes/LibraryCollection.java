@@ -7,17 +7,18 @@ import java.sql.*;
 
 
 public class LibraryCollection {
-    public static void AddBook(String title, int id, String author, String genre, String topic){
+    public static void AddBook(String title, int id, String author, String genre, String StartDate,String EndDate){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
-            String sql ="INSERT INTO Books(Title,Id,Author,Genre,Topic) Values(?,?,?,?,?)";
+            String sql ="INSERT INTO Books(Title,Id,Author,Genre,StartDate,EndDate) Values(?,?,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, title);
             ps.setInt(2, id);
             ps.setString(3, author);
             ps.setString(4,genre);
-            ps.setString(5, topic);
+            ps.setString(5, StartDate);
+            ps.setString(6,EndDate);
             ps.execute();
             System.out.println("Data has been inserted");
         }catch (SQLException e){
@@ -68,13 +69,28 @@ public class LibraryCollection {
             System.out.println(e.toString());
         }
     }
-    public static void UdateBookTopic(String topic,int id){
+    public static void UdateBookSatrtDate(String StartDate,int id){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
-            String sql = "UPDATE Books SET Topic = ? WHERE Id = ? ";
+            String sql = "UPDATE Books SET StartDate = ? WHERE Id = ? ";
             ps = con.prepareStatement(sql);
-            ps.setString(1, topic);
+            ps.setString(1, StartDate);
+            ps.setInt(2, id);
+            ps.execute();
+            System.out.println("topic has been updated");
+        }catch(SQLException e){
+            //TODO: handle eception
+            System.out.println(e.toString());
+        }
+    }
+    public static void UdateBookEndDateDate(String EndDate,int id){
+        Connection con = testjdbc.connect();
+        PreparedStatement ps = null;
+        try{
+            String sql = "UPDATE Books SET EndDate = ? WHERE Id = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, EndDate);
             ps.setInt(2, id);
             ps.execute();
             System.out.println("topic has been updated");
