@@ -34,8 +34,8 @@ public class BookView implements Initializable {
     private TableView<book> table;
 
     ObservableList<book> list= FXCollections.observableArrayList(
-            new book("zeby", 123,"omar","zeby","rrrrr"),
-            new book("zeby", 12,"moniem","zebomar","zeb")
+            new book("zeby", 123,"omar","zeby",true,true),
+            new book("zeby", 12,"moniem","zebomar",true,true)
     );
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,7 +43,6 @@ public class BookView implements Initializable {
         Genre.setCellValueFactory(new PropertyValueFactory<LibraryCollection,String>("Genre"));
         Id.setCellValueFactory(new PropertyValueFactory<LibraryCollection,Integer>("Id"));
         Title.setCellValueFactory(new PropertyValueFactory<LibraryCollection,String>("Title"));
-        Topic.setCellValueFactory(new PropertyValueFactory<LibraryCollection,String>("Topic"));
         table.setItems(list);
     }
 }
