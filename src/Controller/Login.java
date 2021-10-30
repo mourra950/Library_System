@@ -48,6 +48,7 @@ public class Login {
 
     @FXML
     void LoginUser(ActionEvent event) throws IOException {
+        boolean found = true;
         //if(Mail.getText() && Password.getText()) {
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
@@ -56,24 +57,23 @@ public class Login {
             String sql = "SELECT * FROM people";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            System.out.println("a7a");
-            while (rs.next()) {
+            while (rs.next() && found) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String password = rs.getString("Password");
-                System.out.println(name+" "+email+ " "+password);
-
+               if(email.equals(Mail.getText()) && password.equals(Password.getText()))
+                 found = false;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        Parent loginparent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
-            Scene loginScene = new Scene(loginparent);
-            Stage loginstage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            loginstage.setTitle("main");
-            loginstage.setScene(loginScene);
-            loginstage.centerOnScreen();
-            loginstage.show();
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
+            Scene Scene = new Scene(parent);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("main");
+            stage.setScene(Scene);
+            stage.centerOnScreen();
+            stage.show();
         //}
     }
 
