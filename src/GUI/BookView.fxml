@@ -24,11 +24,11 @@
       </VBox>
       <TextField fx:id="EnterAuthor" layoutX="15.0" layoutY="14.0" promptText="Enter Author" />
       <Button fx:id="Search" layoutX="65.0" layoutY="219.0" mnemonicParsing="false" onAction="#search" text="Search" />
-      <TextField fx:id="Enter" layoutX="15.0" layoutY="52.0" promptText="Enter Genre" />
-      <TextField fx:id="En" layoutX="15.0" layoutY="90.0" promptText="Enter Id" />
+      <TextField fx:id="EnterGenre" layoutX="15.0" layoutY="52.0" promptText="Enter Genre" />
+      <TextField fx:id="EnterId" layoutX="15.0" layoutY="90.0" promptText="Enter Id" />
       <TextField fx:id="EnterTitle" layoutX="16.0" layoutY="123.0" promptText="Enter Title" />
-      <TextField fx:id="EnterId4" layoutX="16.0" layoutY="160.0" promptText="Enter Topic" />
-      <Button fx:id="Add" layoutX="72.0" layoutY="268.0" mnemonicParsing="false" onAction="#add" text="Add" />
-      <Button fx:id="Delete" layoutX="66.0" layoutY="321.0" mnemonicParsing="false" onAction="#deletee" text="Delete" />
+      <TextField fx:id="EnterTopic" layoutX="16.0" layoutY="160.0" promptText="Enter Topic" />
+      <Button fx:id="Add" layoutX="72.0" layoutY="268.0" mnemonicParsing="false" onAction="#AddBook" text="Add" />
+      <Button fx:id="Delete" layoutX="66.0" layoutY="321.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
    </children>
 </AnchorPane>
