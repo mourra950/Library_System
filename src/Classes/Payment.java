@@ -22,10 +22,9 @@ public class Payment {
     }
     public void setLatefees(book a) {
         if (a.IsDeadLine()) {
-            latesfees=getfprice()*0.05;
+            latesfees=getfprice()*0.1;
         }
     }
-    //want to merge between setlatefees and getfprice.
     public double getfprice(){
         return ((price*quantity)-discount);
     }
