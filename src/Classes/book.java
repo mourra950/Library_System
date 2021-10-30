@@ -14,8 +14,15 @@ public class book {
     private boolean can_be_checked_out;
     private boolean is_available;//available to bo borrowed
 
+    public book(String title, int id, String author, String genre, String topic) {
+        this.title = title;
+        this.id = id;
+        this.author = author;
+        this.genre = genre;
+        this.topic = topic;
+    }
 
-    public book(String title,int id,String author,String genre,String topic,int daily_limit,boolean can_be_checked_out,boolean is_available){
+    public book(String title, int id, String author, String genre, String topic, int daily_limit, boolean can_be_checked_out, boolean is_available){
         this.title=title;
         this.id=id;
         this.author=author;
