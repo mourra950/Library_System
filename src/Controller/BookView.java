@@ -61,12 +61,13 @@ public class BookView implements Initializable {
 
     @FXML
     void AddBook(ActionEvent event) {
+        //LibraryCollection.AddBook();
 
     }
 
     @FXML
     void delete(ActionEvent event) {
-
+        //LibraryCollection.RemoveBook();
     }
 
     @FXML
@@ -75,8 +76,8 @@ public class BookView implements Initializable {
     }
 
     ObservableList<book> list= FXCollections.observableArrayList(
-            new book("zeby", z,"omar","zeby","rrrrr"),
-            new book("zeby", 12,"moniem","zebomar","zeb")
+            //new book("zeby", z,"omar","zeby","rrrrr"),
+            //new book("zeby", 12,"moniem","zebomar","zeb")
 
     );
     @Override
@@ -93,8 +94,6 @@ public class BookView implements Initializable {
         z+=10;
     }
 
-    public void add(ActionEvent actionEvent) {
-    }
 
 
 }
