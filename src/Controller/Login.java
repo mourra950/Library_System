@@ -56,9 +56,10 @@ public class Login {
             String sql = "SELECT * FROM people";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+            System.out.println("a7a");
             while (rs.next()) {
-                String name = rs.getString("Name");
-                String email = rs.getString("Mail");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
                 String password = rs.getString("Password");
                 System.out.println(name+" "+email+ " "+password);
 
