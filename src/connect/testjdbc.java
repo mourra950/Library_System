@@ -13,7 +13,7 @@ public class testjdbc {
     public static Connection connect(){
         Connection con = null;
         try{
-            Class.forName("org.sqlite.JDBC");
+            Class.forName("jdbc:sqlite:src/DB/LibraryDB.db");
             con = DriverManager.getConnection("jdbc:sqlite:LibraryDB.db"); //connecting to our database
             System.out.println("Connected!");
         } catch(ClassNotFoundException | SQLException e){

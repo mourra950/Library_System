@@ -53,7 +53,7 @@ public class Login {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT * FROM users";
+            String sql = "SELECT * FROM people";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
