@@ -18,8 +18,9 @@ public class Librarian extends Person{
         connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`) VALUES ('"+b1.getTitle()+",'"+b1.getId()+",'"+b1.getAuthor()+",'"+b1.getGenre()+",'"+b1.getCount()+"',0);");
         connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
     }
-    public void removebook(book b1){
+    public void removebook(book b1, Library s){
         connect.testjdbc.connect("DELETE FROM `main`.`Books` WHERE (`Id`='"+b1.getId()+"');");
+        connect.testjdbc.connect("DELETE FROM `main`.`library` WHERE (`book_id`='"+b1.getId()+"' AND `id` ='"+b1.getId()+"');");
 
 
     }
