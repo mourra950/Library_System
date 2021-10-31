@@ -10,7 +10,7 @@ public class Librarian extends Person{
     public void setBooksBorrowed(User K,int i){
         String s = K.getUserName();
 
-        connect.testjdbc.connect("UPDATE `main`.`people` SET `counter` = '" + i + "' WHERE (`person_id` = '" + K.getPersonId() + "');");
+        connect.testjdbc.connect("UPDATE `main`.`Users` SET `counter` = '" + i + "' WHERE (`person_id` = '" + K.getPersonId() + "');");
 
     }
 }

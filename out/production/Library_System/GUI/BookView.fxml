@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="379.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="Controller.BookView">
-  <columns>
-    <TableColumn fx:id="Title" prefWidth="75.0" text="Title" />
-    <TableColumn fx:id="Id" prefWidth="75.0" text="Id" />
-      <TableColumn fx:id="Author" prefWidth="75.0" text="Author" />
-      <TableColumn fx:id="Genre" prefWidth="75.0" text="Genre" />
-      <TableColumn fx:id="Topic" prefWidth="75.0" text="Topic" />
-  </columns>
-</TableView>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.BookView">
+   <children>
+      <VBox layoutX="175.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <TableView fx:id="table" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="425.0">
+               <columns>
+                  <TableColumn fx:id="Title" prefWidth="75.0" text="Title" />
+                  <TableColumn fx:id="Id" prefWidth="75.0" text="Id" />
+                  <TableColumn fx:id="Author" prefWidth="75.0" text="Author" />
+                  <TableColumn fx:id="Genre" prefWidth="75.0" text="Genre" />
+                  <TableColumn fx:id="Topic" prefWidth="75.0" text="Topic" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <TextField layoutX="14.0" layoutY="120.0" />
+      <Button layoutX="63.0" layoutY="175.0" mnemonicParsing="false" onAction="#putinfo" text="Button" />
+   </children>
+</AnchorPane>
