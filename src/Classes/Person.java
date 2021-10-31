@@ -33,8 +33,58 @@ public class Person {
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();
-            id = rs.getString(1);
-            System.out.println(id);
+            String T = rs.getString(1);
+            System.out.println(T);
+            //  connect.testjdbc.connect("SELECT FROM `main`.`Books` WHERE (`Id`='"+id+"');");
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+
+        } finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+    public void searchTitle(String title) {
+        Connection con = testjdbc.connect();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT Title FROM `main`.`Books` where Title=?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, title);
+            rs = ps.executeQuery();
+            String T = rs.getString(1);
+            System.out.println(T);
+            //  connect.testjdbc.connect("SELECT FROM `main`.`Books` WHERE (`Id`='"+id+"');");
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+
+        } finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+    public void searchAuthor(String Author) {
+        Connection con = testjdbc.connect();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT Title FROM `main`.`Books` where Title=?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, Author);
+            rs = ps.executeQuery();
+            String T = rs.getString(1);
+            System.out.println(T);
             //  connect.testjdbc.connect("SELECT FROM `main`.`Books` WHERE (`Id`='"+id+"');");
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -50,4 +100,6 @@ public class Person {
         }
     }
 }
+
+
 
