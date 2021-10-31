@@ -7,11 +7,10 @@ public class Person {
     protected int id;
 
     public Person(String name, String Email, String Password){
-
         this.name=name;
         this.Email=Email;
         this.Password=Password;
-
+        this.id = id;
     }
 public Person(){
 
