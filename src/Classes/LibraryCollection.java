@@ -7,17 +7,18 @@ import java.sql.*;
 
 
 public class LibraryCollection {
-    public static void AddBook(String title,String id, String author, String genre,int count ){
+    public static void AddBook(String title,String id, String author, String genre,int count,int BorrowCounter ){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
-            String sql ="INSERT INTO Books(Title,Id,Author,Genre,Count) Values(?,?,?,?,?)";
+            String sql ="INSERT INTO Books(Title,Id,Author,Genre,Count,BorrowCounter) Values(?,?,?,?,?,?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, title);
             ps.setString(2, id);
             ps.setString(3, author);
             ps.setString(4,genre);
             ps.setInt(5, count);
+            ps.setInt(6,BorrowCounter);
             ps.execute();
             System.out.println("Data has been inserted");
         }catch (SQLException e){
