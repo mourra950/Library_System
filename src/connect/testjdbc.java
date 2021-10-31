@@ -2,10 +2,7 @@ package connect;
 
 import Classes.User;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class testjdbc {
@@ -22,6 +19,9 @@ public class testjdbc {
         }
         return con;
     }
+
+
+             //   c.close();
 
     public static void connect(String a) {
         Connection conn = null;
