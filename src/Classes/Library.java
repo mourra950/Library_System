@@ -1,9 +1,17 @@
 package Classes;
 
 public class Library {
-    String name,id,book_id;
-    public Library(){}
-    public Library(String name,String id,String book.id){
+    private String id;
+    private String name;
+
+
+    public Library(String id, String name, book b1) {
+        this.id = id;
+        this.name = name;
 
     }
+    public Library(String id){
+        this.id=id;
+    }
 }
+
