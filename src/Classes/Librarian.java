@@ -1,9 +1,10 @@
 package Classes;
 
 public class Librarian extends Person{
-    public Librarian(){
+    String librry_id;
+    public Librarian(String k){
         super();
-
+        librry_id = k;
     }
 
     public void setBooksBorrowed(User K,int i){

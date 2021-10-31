@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 
 public class book {
     private String title;
-    private int id;
+    private String id;
     private String author;
     private String genre;
     private LocalDate StartDate;
@@ -15,7 +15,7 @@ public class book {
     private boolean can_be_checked_out;
     private boolean is_available;//available to bo borrowed
 
-    public book(String title, int id, String author, String genre, boolean can_be_checked_out, boolean is_available){
+    public book(String title,String id, String author, String genre, boolean can_be_checked_out, boolean is_available){
         setTitle(title);
         setId(id);
         setAuthor(author);
@@ -36,11 +36,11 @@ public class book {
     public LocalDate getStartDate(){return StartDate;}
     public LocalDate getEndDate(){return EndDate;}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
