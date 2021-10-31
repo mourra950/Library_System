@@ -7,6 +7,6 @@ public class CashPayment extends Payment
        public void display(){
            System.out.println("your number of borrowed books "+ quantity);
            System.out.println("your discount is "+discountvalue(quantity));
-           System.out.println("the total price in cash paid is "+(getfprice()+latesfees));
+           System.out.println("the total price in cash paid is "+(getfprice()+getLatefees()));
        }
    }
