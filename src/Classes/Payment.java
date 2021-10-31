@@ -12,11 +12,11 @@ public class Payment {
     public double discountvalue(int quantity){
         if (quantity>1 && quantity<=3 )
         {
-            return(price*quantity)*0.25;
+            discount=(price*quantity)*0.25;
         }
         if (quantity>3 && quantity<=5 )
         {
-            return (price*quantity)*0.5;
+            discount=(price*quantity)*0.5;
         }
         return 0;
     }
