@@ -14,6 +14,7 @@ public class book {
     private int count;
     private boolean can_be_checked_out;
     private boolean is_available;//available to bo borrowed
+    private int BorrowCount;
 
     public book(String title,String id, String author, String genre, boolean can_be_checked_out, boolean is_available){
         setTitle(title);
@@ -23,6 +24,7 @@ public class book {
         setCan_be_checked_out(can_be_checked_out);
         setIs_available(is_available);
         setCount(0);
+        setBorrowCount(0);
         //connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"','"+count+"');");
 
     }
@@ -110,6 +112,8 @@ public class book {
     public void setCount(int count) {
         this.count = count;
     }
+    public int getBorrowCount(){return BorrowCount;}
+    public void setBorrowCount(int Borrowcount){this.BorrowCount = Borrowcount;}
 
     public int getDuration() {
         return duration;

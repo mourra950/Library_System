@@ -30,8 +30,10 @@ public class User extends Person{
             System.out.println("you should return before "+b.getEndDate()+" days");
             counter++;
             int k = b.getCount()-1;
+            int p = b.getBorrowCount()+1;
             connect.testjdbc.connect("UPDATE 'main'.'Users' SET('Counter' = '"+counter+"') WHERE('person_id' ='"+person_id+"')");
             connect.testjdbc.connect("UPDATE 'main'.'Books' SET('Count' = '"+k+"') WHERE('Id' ='"+b.getId()+"')");
+            connect.testjdbc.connect("UPDATE 'main'.'Books' SET('BorrowCount' = '"+p+"') WHERE('Id' ='"+b.getId()+"')");
         }
         else{
             System.out.println("Book cannot be borrowed");
