@@ -22,8 +22,11 @@ public class book {
         setCan_be_checked_out(can_be_checked_out);
         setIs_available(is_available);
         setCount(0);
-        connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"','"+count+"');");
+        //connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`) VALUES ('"+title+"','"+id+"','"+author+"','"+genre+"','"+count+"');");
 
+    }
+    public book(String id){
+        setTitle(id);
     }
 
     public void return_book(book b){

@@ -16,7 +16,9 @@ public class User extends Person{
         connect.testjdbc.connect("INSERT INTO `main`.`person`(`Mail`,`Name`,`Password`) VALUES ('"+super.name+"','"+super.Email+"','"+super.Password+"');");
         connect.testjdbc.connect("INSERT INTO `main`.`Users`(`person_id`) VALUES ('"+person_id+"');");
 
+
     }
+
     public String getUserName(){return super.name;}
     public String getPersonId(){return person_id;}
 
