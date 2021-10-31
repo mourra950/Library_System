@@ -61,13 +61,12 @@ public class BookView implements Initializable {
 
     @FXML
     void AddBook(ActionEvent event) {
-        //LibraryCollection.AddBook();
-
+        LibraryCollection.AddBook("EnterTitle","EnterId","EnterAuthor","EnterGenre",'1');
     }
 
     @FXML
     void delete(ActionEvent event) {
-        //LibraryCollection.RemoveBook();
+        LibraryCollection.RemoveBook("EnterId");
     }
 
     @FXML

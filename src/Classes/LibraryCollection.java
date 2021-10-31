@@ -24,13 +24,13 @@ public class LibraryCollection {
             System.out.println(e.toString());
         }
     }
-    public static void RemoveBook(int id){
+    public static void RemoveBook(String id){
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         try{
             String sql = "DELETE FROM Books WHERE Id = ? ";
             ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, Integer.parseInt(id));
             ps.execute();
             System.out.println("Book has been deleted!");
         }catch(Exception e){
