@@ -14,7 +14,7 @@ public class Librarian extends Person{
     }
 
     public void addbook(book b1){
-        connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`) VALUES ('"+b1.getTitle()+",'"+b1.getId()+",'"+b1.getAuthor()+",'"+b1.getGenre()+",'"+b1.getCount()+"');");
+        connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`) VALUES ('"+b1.getTitle()+",'"+b1.getId()+",'"+b1.getAuthor()+",'"+b1.getGenre()+",'"+b1.getCount()+"',0);");
 
     }
     public void removebook(book b1){
