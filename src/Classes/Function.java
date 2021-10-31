@@ -7,7 +7,7 @@ public class Function {
 
     public void borrowbook(User k,book b,Library s) throws SQLException {
 
-        if(b.isavailable()==true && b.Bookcount()>0){
+        if(b.isavailable()==true && b.Bookcount()>0 && k.UserCount()<5){
 
             connect.testjdbc.connect("UPDATE `main`.`Users` SET `book_id` = '" + b.getId()+ "' WHERE (`person_id` = '" + k.getPersonId() + "' AND `book_id` = NULL);");
             int r = b.Bookcount()-1;

@@ -1,49 +1,56 @@
 package Classes;
+import java.sql.*;
 import java.time.LocalDate;
 
 
-public class User extends Person{
+public class User extends Person {
 
     private String person_id;
     private String Card_Number;
-    private int counter; //books borrowed
-    public User(String k,String s){
+     //books borrowed
+
+    public User(String k,String s) {
         super();
-    person_id = k;
-    Card_Number=s;
-    counter =0;
+        person_id=k;
+        Card_Number=s;
+
+    }
+    public User(String k ){
+        person_id=k;
+
     }
 
-    public boolean BorrowedValid(){
-        if(counter<=5){
-            return true;
-        }else return false;
+
+
+    public String getUserName() {
+        return super.name;
     }
-    public String getUserName(){return super.name;}
-    public String getPersonId(){return person_id;}
-    public String getCard_Number(){return Card_Number;}
-    public void borrow(Library lib,book b,int duration){
-        if (b.getCan_be_checked_out() && b.getIs_available() && BorrowedValid()){
-            b.setIs_available(false);
-            b.setStartDate(LocalDate.now());
-            b.setEndDate(b.getStartDate().plusDays(duration));
-            System.out.println("you should return before "+b.getEndDate()+" days");
-            counter++;
-            int k = b.getCount()-1;
-            int p = b.getBorrowCount()+1;
-            connect.testjdbc.connect("UPDATE 'main'.'Users' SET('Counter' = '"+counter+"') WHERE('person_id' ='"+person_id+"')");
-            connect.testjdbc.connect("UPDATE 'main'.'Books' SET('Count' = '"+k+"') WHERE('Id' ='"+b.getId()+"')");
-            connect.testjdbc.connect("UPDATE 'main'.'Books' SET('BorrowCount' = '"+p+"') WHERE('Id' ='"+b.getId()+"')");
+
+    public String getPersonId() {
+        return person_id;
+    }
+
+    public String getCard_Number() {
+        return Card_Number;
+    }
+    public int UserCount() throws SQLException {
+        int Counter = 0;
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        Statement s = c.createStatement();
+        ResultSet rs=s.executeQuery("select * from Users");
+        while(rs.next()){
+
+            if(rs.getString(2).equals(person_id)){
+               Counter++;
+
+            }
         }
-        else{
-            System.out.println("Book cannot be borrowed");
-        }
+        c.close();
+        return Counter;
+
     }
-    public void ReturnBook(book b){
-        counter--;
-        connect.testjdbc.connect("UPDATE 'main'.'Users' SET('Counter' = '"+counter+"') WHERE('person_id' ='"+person_id+"')");
-        connect.testjdbc.connect("UPDATE 'main'.'Books' SET('Count' = '"+b.getCount()+"') WHERE('Id' ='"+b.getId()+"')");
-    }
-    }
+}
+
 
 
