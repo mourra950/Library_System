@@ -3,7 +3,6 @@ package Classes;
 public class Librarian extends Person{
     public Librarian(){
         super();
-        connect.testjdbc.connect("INSERT INTO `main`.`person`(`name`,`id`,`email`,'Password') VALUES ('"+super.name+"','"+super.id+"','"+super.Email+"','"+super.Password+"');");
 
     }
 
@@ -15,7 +14,7 @@ public class Librarian extends Person{
     }
 
     public void addbook(book b1){
-        connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`) VALUES ('"+b1.getTitle()+",'"+b1.getId()+",'"+b1.getAuthor()+",'"+b1.getGenre()+",0);");
+        connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`) VALUES ('"+b1.getTitle()+",'"+b1.getId()+",'"+b1.getAuthor()+",'"+b1.getGenre()+",'"+b1.getCount()+"');");
 
     }
     public void removebook(book b1){
@@ -32,7 +31,7 @@ public class Librarian extends Person{
     }
     public void removeuser(User k){
         connect.testjdbc.connect("DELETE FROM `main`.`Users` WHERE (`person_id`='"+k.getPersonId()+"');");
-        connect.testjdbc.connect("DELETE FROM `main`.`person` WHERE (`Id`='"+k.getPersonId()+"');");
+        connect.testjdbc.connect("DELETE FROM `main`.`person` WHERE (`id`='"+k.getPersonId()+"');");
 
     }
 
