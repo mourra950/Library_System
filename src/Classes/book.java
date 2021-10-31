@@ -86,9 +86,7 @@ public class book {
         return is_available;
     }
     public boolean IsDeadLine() {
-        if (LocalDate.now().isAfter(EndDate))
-            return true;
-        return false;
+        return LocalDate.now().isAfter(EndDate);
     }
 
     public void setStartDate(LocalDate startDate) {
