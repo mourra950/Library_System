@@ -1,6 +1,7 @@
 package Classes;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 
 public class Librarian extends Person{
@@ -58,6 +59,24 @@ public class Librarian extends Person{
         connect.testjdbc.connect("INSERT INTO `main`.`person`(`Mail`,`Name`,`Password`,`Admin`) VALUES ('"+this.name+"','"+this.Email+"','"+this.Password+"','True');");
         connect.testjdbc.connect("INSERT INTO `main`.`Librarians`(`person_id`,`library_id`) VALUES ('"+person_id+"','"+L.getId()+"');");
 
+    }
+    public boolean IsDeadline(User k, book b ) throws SQLException {
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery("select * from Date");
+        while (rs.next()) {
+
+            if (rs.getString(1).equals(k.getPersonId()) && rs.getString(2).equals(b.getId())) {
+                String e = rs.getString(4);
+                LocalDate DeadLine = LocalDate.parse(e);
+                if (DeadLine.isAfter(LocalDate.now())) {
+                    return true;
+                }
+            }
+        }
+        c.close();
+        return false;
     }
 
 }

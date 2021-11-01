@@ -27,6 +27,7 @@ public class book {
     public book(String id){
         this.id= id;
     }
+
     public boolean isavailable() throws SQLException {
 
         String url = "jdbc:sqlite:src/DB/LibraryDB.db";
