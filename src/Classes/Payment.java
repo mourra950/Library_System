@@ -27,21 +27,25 @@ public class Payment {
     public void display(){
         System.out.println("your number of borrowed books "+ quantity);
         System.out.println("your discount is "+discountvalue(quantity));
-        //System.out.println("the total price is "+(getfprice()+//getLatefees()));
+        System.out.println("the total price is "+(getfprice()+getLatesfees()));
     }
-    public double getLatefees(book b){
+    public double getLatesfees() {
+        return latesfees;
+    }
+    public void setLatesfees(double latesfees,book b) {
         long daysBetween=ChronoUnit.DAYS.between(b.getEndDate(), LocalDate.now());
         if (daysBetween<0){
-            return 0;
-}
+            latesfees=0;
+        }
         if (daysBetween>=1&&daysBetween<7){
-            return getfprice()*0.1;
+            latesfees= getfprice()*0.1;
         }
         if (daysBetween>=7&&daysBetween<14){
-            return getfprice()*0.2;
+            latesfees=getfprice()*0.2;
         }
-else{
-            return getfprice()*0.5;
+        else{
+            latesfees=getfprice()*0.5;
         }
+        this.latesfees = latesfees;
     }
 }
