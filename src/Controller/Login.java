@@ -48,25 +48,30 @@ public class Login {
 
     @FXML
     void LoginUser(ActionEvent event) throws IOException {
-        boolean found = true;
+        boolean found = false;
         //if(Mail.getText() && Password.getText()) {
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT * FROM people";
+            //
+            String sql = "SELECT * FROM 'main'.'person' WHERE email = '"+Mail.getText()+"' AND Password = '"+Password.getText()+"' ;";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            while (rs.next() && found) {
+//            System.out.println("i am outside");
+            while (rs.next() && !found) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String password = rs.getString("Password");
+//                System.out.println(name+"iam here "+email+" "+ password+" \n");
                if(email.equals(Mail.getText()) && password.equals(Password.getText()))
-                 found = false;
+                 found = true;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        if(found)
+        {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
             Scene Scene = new Scene(parent);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -74,7 +79,7 @@ public class Login {
             stage.setScene(Scene);
             stage.centerOnScreen();
             stage.show();
-        //}
+        }
     }
 
     @FXML
