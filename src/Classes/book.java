@@ -13,15 +13,16 @@ public class book {
     private LocalDate EndDate;
     private int BorrowCount;
     private int count;
+    private int price;
 
 
-    public book(String title,String id, String author, String genre,int count){
+    public book(String title,String id, String author, String genre,int count,int price){
         this.title=title;
         this.id=id;
         this.author=author;
         this.genre = genre;
         this.count=count;
-
+        this.price=price;
     }
     public book(String id){
         this.id= id;
@@ -74,6 +75,7 @@ public class book {
         return k;
     }
 
+    public int getPrice(){return price;}
 
     public LocalDate getStartDate(){return StartDate;}
     public LocalDate getEndDate(){return EndDate;}
