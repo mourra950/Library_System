@@ -56,7 +56,13 @@ public class Function {
 
 
     }
+    public static void most_popular()throws SQLException{
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        PreparedStatement ps=null;
+        ResultSet re=null;
 
+    }
 
 
     }
