@@ -55,7 +55,7 @@ public class Librarian extends Person{
         connect.testjdbc.connect("DELETE FROM `main`.`person` WHERE (`id`='"+k.getPersonId()+"');");
 
     }
-    public void add(Library L){
+    public void addAdmin(Library L){
         connect.testjdbc.connect("INSERT INTO `main`.`person`(`Mail`,`Name`,`Password`,`Admin`) VALUES ('"+this.name+"','"+this.Email+"','"+this.Password+"','True');");
         connect.testjdbc.connect("INSERT INTO `main`.`Librarians`(`person_id`,`library_id`) VALUES ('"+person_id+"','"+L.getId()+"');");
 
