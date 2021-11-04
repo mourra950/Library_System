@@ -78,5 +78,29 @@ public class Librarian extends Person{
         c.close();
         return false;
     }
+    public String TopBook()throws SQLException{
+        int Total =0;
+        String e= "None";
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery("select * from Book");
+        while (rs.next()) {
+
+            if (rs.getInt(6) > Total ) {
+                Total = rs.getInt(6);
+                e=rs.getString(1);
+
+
+            }
+
+        }
+
+        c.close();
+        return e;
+
+
+    }
+
 
 }

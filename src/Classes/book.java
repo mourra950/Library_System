@@ -75,7 +75,15 @@ public class book {
         c.close();
         return k;
     }
-    
+    public static void most_popular()throws SQLException{
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        PreparedStatement ps=null;
+        ResultSet re=null;
+
+    }
+
+
     public int getPrice(){return price;}
 
     public LocalDate getStartDate(){return StartDate;}
