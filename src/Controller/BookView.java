@@ -76,8 +76,38 @@ public class BookView {
     }
 
     @FXML
-    void search(ActionEvent event) {
+    void search(ActionEvent event) throws SQLException {
+        String filter = "select * from 'main'.'Books' ";
+        boolean Condition = false;
+        System.out.println(EnterAuthor.getText());
+        if (!EnterAuthor.getText().equals("")) {
+            filter+="WHERE Title = '"+EnterAuthor.getText()+"' ";
+            Condition = true;
+        }
+        if (!EnterTitle.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter+="WHERE Author = '"+EnterTitle.getText()+"' ";
+            Condition = true;
+        }
+        if (!EnterId.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter+="WHERE Id = '"+EnterId.getText()+"' ";
+            Condition = true;
+        }
+        if (!EnterGenre.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter+="WHERE Genre = '"+EnterGenre.getText()+"' ";
+            Condition = true;
+        }
+        filter+=" ;";
+        System.out.println(filter);
+        if(Condition) {
 
+            loadTables(filter);
+        }
     }
 
     @FXML
@@ -93,7 +123,7 @@ public class BookView {
         Connection c = DriverManager.getConnection(url);
         Statement s = c.createStatement();
         ResultSet rs = s.executeQuery(filter);
-
+list.clear();
         while (rs.next()) {
             String Titlex = rs.getString("Title");
             String Authorx = rs.getString("Author");
@@ -103,6 +133,7 @@ public class BookView {
             list.add(new book(Titlex, Idx, Authorx, Genrex));
             System.out.println(list);
         }
+        table.getItems().clear();
         table.getItems().addAll(list);
         c.close();
 
