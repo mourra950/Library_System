@@ -28,6 +28,13 @@ public class book {
         this.id= id;
     }
 
+    public book(String title, String id, String author, String genre) {
+        this.title=title;
+        this.id=id;
+        this.author=author;
+        this.genre = genre;
+    }
+
     public boolean isavailable() throws SQLException {
 
         String url = "jdbc:sqlite:src/DB/LibraryDB.db";

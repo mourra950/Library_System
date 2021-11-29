@@ -45,7 +45,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #84A48B;" VBox.vgrow="ALWAYS">
       <children>
-            <ImageView fitHeight="452.0" fitWidth="454.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="452.0" fitWidth="454.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/sophabook.gif" />
                </image>
