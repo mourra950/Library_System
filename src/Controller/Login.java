@@ -42,44 +42,64 @@ public class Login {
     private Button RegButton;
 
     @FXML
-    void LoadRegister(ActionEvent event) {
+    void LoadRegister(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
+        Scene Scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Register");
+        stage.setScene(Scene);
+        stage.centerOnScreen();
+        stage.show();
 
     }
 
     @FXML
     void LoginUser(ActionEvent event) throws IOException {
         boolean found = false;
-        //if(Mail.getText() && Password.getText()) {
+        boolean admin=false;
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            //
-            String sql = "SELECT * FROM 'main'.'person' WHERE email = '"+Mail.getText()+"' AND Password = '"+Password.getText()+"' ;";
+
+            String sql = "SELECT * FROM 'main'.'person' WHERE email = '"+Mail.getText()+"' AND password = '"+Password.getText()+"' ;";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-//            System.out.println("i am outside");
             while (rs.next() && !found) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String password = rs.getString("Password");
-//                System.out.println(name+"iam here "+email+" "+ password+" \n");
+
                if(email.equals(Mail.getText()) && password.equals(Password.getText()))
                  found = true;
+               if(rs.getString("admin").equals("true"))
+                   admin=true;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        if(found)
+        if(found && admin)
         {
-        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/hello-view.fxml")));
-            Scene Scene = new Scene(parent);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setTitle("main");
-            stage.setScene(Scene);
-            stage.centerOnScreen();
-            stage.show();
+            login(event,"adminPage.fxml");
         }
+        else if (found)
+        {
+            login(event,"userPage.fxml");
+        }
+        else
+        {
+            AlertBox.display("not found","error try again or register");
+        }
+    }
+
+    void login(ActionEvent event ,String page) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/"+page)));
+        Scene Scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("main");
+        stage.setScene(Scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 
     @FXML
