@@ -1,5 +1,7 @@
 package Controller;
 
+import Classes.Person;
+import Classes.User;
 import connect.testjdbc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,8 +57,11 @@ public class Login {
 
     @FXML
     void LoginUser(ActionEvent event) throws IOException {
+        String name=null;
+        String email=null;
+        String password=null;
         boolean found = false;
-        boolean admin=false;
+        boolean isadmin=false;
         Connection con = testjdbc.connect();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -66,25 +71,29 @@ public class Login {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next() && !found) {
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                String password = rs.getString("Password");
+                 name = rs.getString("name");
+                 email = rs.getString("email");
+                 password = rs.getString("Password");
 
                if(email.equals(Mail.getText()) && password.equals(Password.getText()))
                  found = true;
                if(rs.getString("admin").equals("true"))
-                   admin=true;
+                   isadmin=true;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        if(found && admin)
+        if(found && isadmin)
         {
+            //create admin and login to the admin page
             login(event,"adminPage.fxml");
+            Person Admin =new Person(name,email,password);
         }
         else if (found)
         {
+            //create user and login to the user page
             login(event,"userPage.fxml");
+            Person User =new Person(name,email,password);
         }
         else
         {

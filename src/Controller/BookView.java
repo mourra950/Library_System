@@ -123,7 +123,7 @@ public class BookView {
         Connection c = DriverManager.getConnection(url);
         Statement s = c.createStatement();
         ResultSet rs = s.executeQuery(filter);
-list.clear();
+        list.clear();
         while (rs.next()) {
             String Titlex = rs.getString("Title");
             String Authorx = rs.getString("Author");
