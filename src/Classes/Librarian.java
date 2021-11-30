@@ -24,23 +24,25 @@ public class Librarian extends Person{
         else
             connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
     }
-    public void removebook(book b1, Library z) throws SQLException{
-        connect.testjdbc.connect("DELETE FROM `main`.`Books` WHERE (`Id`='"+b1.getId()+"');");
-        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
-        Connection c = DriverManager.getConnection(url);
-        Statement s = c.createStatement();
-        ResultSet rs=s.executeQuery("select * from Books");
-        while(rs.next()){
+    public void removebook(book b1, Library z) throws SQLException {
+        if (CanBeDeleted(b1)) {
+            connect.testjdbc.connect("DELETE FROM `main`.`Books` WHERE (`Id`='" + b1.getId() + "');");
+            String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("select * from Books");
 
-            if(rs.getString(3).equals(b1.getId())){
-                connect.testjdbc.connect("DELETE FROM `main`.`library` WHERE (`book_id`='"+b1.getId()+"');");
+                while (rs.next()) {
 
-            }
+                    if (rs.getString(3).equals(b1.getId())) {
+                        connect.testjdbc.connect("DELETE FROM `main`.`library` WHERE (`book_id`='" + b1.getId() + "');");
+
+                    }
+                }
+            c.close();
+
         }
-        c.close();
-
     }
-
 
 
     public  static void adduser(User k){
@@ -78,6 +80,21 @@ public class Librarian extends Person{
         c.close();
         return false;
     }
+    public boolean CanBeDeleted(book b) throws SQLException{
+
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery("select * from Books");
+        while (rs.next()) {
+            if(rs.getInt(6)==0)
+                return true;
+        }
+        c.close();
+        return false;
+    }
+
+
     public String TopBook()throws SQLException{
         int Total =0;
         String e= "None";

@@ -11,7 +11,7 @@ public class book {
     private String genre;
     private LocalDate StartDate;
     private LocalDate EndDate;
-    private int BorrowCount;
+    private int BorrowCount=0;
     private int count;
     private int price;
 
@@ -23,6 +23,7 @@ public class book {
         this.genre = genre;
         this.count=count;
         this.price=price;
+
     }
     public book(String id){
         this.id= id;
@@ -66,6 +67,7 @@ public class book {
         c.close();
         return k;
     }
+
     public int BorrowedBooks() throws SQLException{
         int k = 0;
         String url = "jdbc:sqlite:src/DB/LibraryDB.db";
