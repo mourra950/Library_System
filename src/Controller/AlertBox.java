@@ -23,6 +23,7 @@ public class AlertBox {
         window.setScene(scene);
         window.centerOnScreen();
         window.showAndWait();
+        //error displayed and waiting ot close
     }
 
 }
