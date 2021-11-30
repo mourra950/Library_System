@@ -48,31 +48,32 @@ public class signUpPage {
     @FXML
     void SignmeUP(ActionEvent event) throws IOException {
         if (!Name.getText().isEmpty() && !Pass.getText().isEmpty() && !CPass.getText().isEmpty() && !Mail.getText().isEmpty()) {
-            boolean found = false;
-            Connection con = testjdbc.connect();
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            try {
-                String sql = "SELECT * FROM 'main'.'person' WHERE id = '" + Mail.getText() + "';";
-                ps = con.prepareStatement(sql);
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    found = true;
+            if (CPass.getText().equals(Pass.getText())) {
+                boolean found = false;
+                Connection con = testjdbc.connect();
+                PreparedStatement ps = null;
+                ResultSet rs = null;
+                try {
+                    String sql = "SELECT * FROM 'main'.'person' WHERE id = '" + Mail.getText() + "';";
+                    ps = con.prepareStatement(sql);
+                    rs = ps.executeQuery();
+                    while (rs.next()) {
+                        found = true;
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            if (!found) {
-                User user = new User(Name.getText(), Mail.getText(), Pass.getText(), Mail.getText());
-                Librarian.adduser(user);
-                changescene(event,"LoginPage.fxml");
+                if (!found) {
+                    User user = new User(Name.getText(), Mail.getText(), Pass.getText(), Mail.getText());
+                    Librarian.adduser(user);
+                    changescene(event, "LoginPage.fxml");
+                } else {
+                    AlertBox.display("already used", "this mail is already used");
+                }
             } else {
-                AlertBox.display("already used", "this mail is already used");
+                AlertBox.display("error", "please provide all info");
             }
-        } else {
-            AlertBox.display("error", "please provide all info");
         }
-
     }
 
         void changescene(ActionEvent event,String page) throws IOException {
