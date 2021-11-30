@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.userPage">
    <children>
-      <Text layoutX="289.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Userpage" />
+      <Text layoutX="274.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Userpage" />
+      <Button layoutX="524.0" layoutY="353.0" mnemonicParsing="false" text="logout" />
+      <Button layoutX="275.0" layoutY="303.0" mnemonicParsing="false" text="books" />
+      <Button layoutX="229.0" layoutY="200.0" mnemonicParsing="false" text="books borrowed by me" />
+      <Button layoutX="222.0" layoutY="123.0" mnemonicParsing="false" text="location beta3 el maktaba" />
    </children>
 </AnchorPane>

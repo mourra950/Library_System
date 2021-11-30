@@ -46,7 +46,7 @@ public class signUpPage {
     private TextField Pass;
 
     @FXML
-    void SignmeUP(ActionEvent event) throws IOException {
+    void SignmeUP(ActionEvent event) throws IOException, SQLException {
         if (!Name.getText().isEmpty() && !Pass.getText().isEmpty() && !CPass.getText().isEmpty() && !Mail.getText().isEmpty()) {
             if (CPass.getText().equals(Pass.getText())) {
                 boolean found = false;
@@ -63,6 +63,7 @@ public class signUpPage {
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+                con.close();
                 if (!found) {
                     User user = new User(Name.getText(), Mail.getText(), Pass.getText(), Mail.getText());
                     Librarian.adduser(user);
@@ -71,8 +72,10 @@ public class signUpPage {
                     AlertBox.display("already used", "this mail is already used");
                 }
             } else {
-                AlertBox.display("error", "please provide all info");
+                AlertBox.display("error", "password doesnt match");
             }
+        }else {
+            AlertBox.display("error", "please provide all info");
         }
     }
 
@@ -80,7 +83,7 @@ public class signUpPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/"+page)));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("main");
+        stage.setTitle("Login");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -88,8 +91,6 @@ public class signUpPage {
 
     @FXML
     void initialize() {
-
-
     }
 
     public void Cancel(ActionEvent actionEvent) throws IOException {
