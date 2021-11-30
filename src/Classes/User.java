@@ -6,13 +6,13 @@ import java.time.LocalDate;
 public class User extends Person {
 
     private String person_id;
-    private String Card_Number;
+
      //books borrowed
 
-    public User(String k,String s) {
-        super();
-        person_id=k;
-        Card_Number=s;
+    public User(String name, String Email, String Password,String id) {
+        super(name,Email,Password);
+        person_id=id;
+
 
     }
     public User(String k ){
@@ -56,9 +56,7 @@ public class User extends Person {
         return person_id;
     }
 
-    public String getCard_Number() {
-        return Card_Number;
-    }
+
     public int UserCount() throws SQLException {
         int Counter = 0;
         String url = "jdbc:sqlite:src/DB/LibraryDB.db";
