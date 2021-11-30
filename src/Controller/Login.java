@@ -35,7 +35,7 @@ public class Login {
     private Button LogBut;
 
     @FXML
-    private TextField Mail;
+    private TextField Id;
 
     @FXML
     private PasswordField Password;
@@ -58,6 +58,7 @@ public class Login {
     @FXML
     void LoginUser(ActionEvent event) throws IOException {
         String name=null;
+        String id=null;
         String email=null;
         String password=null;
         boolean found = false;
@@ -67,15 +68,16 @@ public class Login {
         ResultSet rs = null;
         try {
 
-            String sql = "SELECT * FROM 'main'.'person' WHERE email = '"+Mail.getText()+"' AND password = '"+Password.getText()+"' ;";
+            String sql = "SELECT * FROM 'main'.'person' WHERE id = '"+Id.getText()+"' AND password = '"+Password.getText()+"' ;";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next() && !found) {
                  name = rs.getString("name");
                  email = rs.getString("email");
                  password = rs.getString("Password");
+                 id=rs.getString("id");
 
-               if(email.equals(Mail.getText()) && password.equals(Password.getText()))
+               if(email.equals(Id.getText()) && password.equals(Password.getText()))
                  found = true;
                if(rs.getString("admin").equals("true"))
                    isadmin=true;
@@ -86,14 +88,16 @@ public class Login {
         if(found && isadmin)
         {
             //create admin and login to the admin page
+            User Admin =new User(name,email,password,id);
             login(event,"adminPage.fxml");
-            Person Admin =new Person(name,email,password);
+
         }
         else if (found)
         {
             //create user and login to the user page
+            User User =new User(name,email,password,id);
             login(event,"userPage.fxml");
-            Person User =new Person(name,email,password);
+
         }
         else
         {
@@ -113,11 +117,10 @@ public class Login {
 
     @FXML
     void initialize() {
-        assert LogBut != null : "fx:id=\"LogBut\" was not injected: check your FXML file 'LoginPage.fxml'.";
-        assert Mail != null : "fx:id=\"Mail\" was not injected: check your FXML file 'LoginPage.fxml'.";
-        assert Password != null : "fx:id=\"Password\" was not injected: check your FXML file 'LoginPage.fxml'.";
-        assert RegButton != null : "fx:id=\"RegButton\" was not injected: check your FXML file 'LoginPage.fxml'.";
 
     }
 
+    public void GosignUp(ActionEvent actionEvent) throws IOException {
+        login(actionEvent,"signUpPage.fxml");
+    }
 }

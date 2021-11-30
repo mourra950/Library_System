@@ -50,7 +50,7 @@
                   <Image url="@../Images/sophabook.gif" />
                </image>
             </ImageView>
-            <TextField fx:id="Mail" layoutX="536.0" layoutY="87.0" prefHeight="26.0" prefWidth="212.0" />
+            <TextField fx:id="Id" layoutX="536.0" layoutY="87.0" prefHeight="26.0" prefWidth="212.0" />
             <PasswordField fx:id="Password" layoutX="536.0" layoutY="211.0" prefHeight="26.0" prefWidth="212.0" />
             <ImageView fitHeight="96.0" fitWidth="26.0" layoutX="486.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -68,6 +68,7 @@
                 <Button fx:id="LogBut" mnemonicParsing="false" onAction="#LoginUser" text="Login" />
               </buttons>
             </ButtonBar>
+            <Button layoutX="722.0" layoutY="451.0" mnemonicParsing="false" onAction="#GosignUp" text="Sign Up" />
       </children>
     </AnchorPane>
   </children>

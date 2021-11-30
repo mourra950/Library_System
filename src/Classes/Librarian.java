@@ -43,9 +43,9 @@ public class Librarian extends Person{
 
 
 
-    public void adduser(User k){
-        connect.testjdbc.connect("INSERT INTO `main`.`person`(`Mail`,`Name`,`Password`,`Admin`) VALUES ('"+k.name+"','"+k.Email+"','"+k.Password+"','False');");
-        connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Credit card number`,`person_id`,`book_id`) VALUES ('"+k.getCard_Number()+"','"+k.getPersonId()+"',NULL);");
+    public  static void adduser(User k){
+        connect.testjdbc.connect("INSERT INTO `main`.`person`(`email`,`name`,`password`,`admin`,'id') VALUES ('"+k.name+"','"+k.Email+"','"+k.Password+"','False','"+k.Email+"');");
+       // connect.testjdbc.connect("INSERT INTO `main`.`Users`(`Credit card number`,`person_id`,`book_id`) VALUES ('"+k.getCard_Number()+"','"+k.getPersonId()+"',NULL);");
 
 
 
