@@ -2,10 +2,10 @@ package Classes;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class book {
     private String title;
+    private String lib;
     private String id;
     private String author;
     private String genre;
@@ -29,11 +29,12 @@ public class book {
         this.id= id;
     }
 
-    public book(String title, String id, String author, String genre) {
+    public book(String title, String id, String author, String genre,String lib) {
         this.title=title;
         this.id=id;
         this.author=author;
         this.genre = genre;
+        this.lib =lib;
     }
 
     public boolean isavailable() throws SQLException {
@@ -153,4 +154,7 @@ public class book {
     }
 
 
+    public String getLib() {
+        return lib;
+    }
 }
