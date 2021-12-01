@@ -1,17 +1,26 @@
 package Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
+import Classes.Librarian;
+import Classes.Library;
 import Classes.book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class BookView {
 
@@ -69,30 +78,50 @@ public class BookView {
 
     @FXML
     private TableView<book> table;
+    ArrayList<String> libraries = new ArrayList<>();
 
     @FXML
-    void AddBook(ActionEvent event) {
+    void AddBook(ActionEvent event) throws SQLException {
+        if (!EnterAuthor.getText().equals("") && !EnterTitle.getText().equals("") && !EnterId.getText().equals("") && !EnterGenre.getText().equals("") && !libChoices.getSelectionModel().isEmpty() && !EnterPrice.getText().equals("") && !EnterCount.getText().equals("")) {
+            boolean condition = false;
 
+            String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("select * from Books WHERE Title = '" + EnterTitle.getText() + "' ;");//WHERE Title = '" + EnterTitle.getText() + "' AND WHERE Lib = '" + libChoices.getValue() + "'
+            while (rs.next()) {
+                condition = true;
+            }
+
+            if (!condition) {
+                System.out.println("sadwdawdawd");
+                String z = "0";
+                s.executeUpdate("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`,`Price`,'Lib') VALUES ('" + EnterTitle.getText() + ",'" + EnterId.getText() + ",'" + EnterAuthor.getText() + ",'" + EnterGenre.getText() + ",'" + EnterCount + "','"+z+"','" + EnterPrice.getText() + ",'" + libChoices.getValue() + "');");
+
+            } else {
+                AlertBox.display("can not add", "book already in the library");
+            }
+
+            c.close();
+        } else {
+            AlertBox.display("error can not add", "provide all info");
+        }
     }
 
-    @FXML
-    void delete(ActionEvent event) {
-
-    }
 
     @FXML
     void search(ActionEvent event) throws SQLException {
-        String filter = "select * from 'main'.'Books' ";
+        String filter = "select * from Books ";
         boolean Condition = false;
         System.out.println(EnterAuthor.getText());
         if (!EnterAuthor.getText().equals("")) {
-            filter += "WHERE Title = '" + EnterAuthor.getText() + "' ";
+            filter += "WHERE Author = '" + EnterAuthor.getText() + "' ";
             Condition = true;
         }
         if (!EnterTitle.getText().equals("")) {
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Author = '" + EnterTitle.getText() + "' ";
+            filter += "WHERE Title = '" + EnterTitle.getText() + "' ";
             Condition = true;
         }
         if (!EnterId.getText().equals("")) {
@@ -107,7 +136,7 @@ public class BookView {
             filter += "WHERE Genre = '" + EnterGenre.getText() + "' ";
             Condition = true;
         }
-        if (!libChoices.getSelectionModel().isEmpty() || !libChoices.getValue().equals("all")) {
+        if (!libChoices.getSelectionModel().isEmpty() && !libChoices.getValue().equals("all")) {
             if (Condition)
                 filter += " AND ";
             filter += "WHERE Lib = '" + libChoices.getValue() + "' ";
@@ -139,14 +168,13 @@ public class BookView {
         Connection c = DriverManager.getConnection(url);
         Statement s = c.createStatement();
         ResultSet rs = s.executeQuery("select * from library");
-        ArrayList<String> libraries = new ArrayList<>();
+
         int i = 0;
         while (rs.next()) {
             libraries.add(rs.getString("name"));
         }
         libChoices.setItems(FXCollections.observableArrayList(libraries));
         c.close();
-
 
 
         initcol();
@@ -190,5 +218,15 @@ public class BookView {
     }
 
     public void Update(ActionEvent actionEvent) {
+    }
+
+    public void backToMain(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/adminPage.fxml")));
+        Scene Scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("admin page");
+        stage.setScene(Scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 }

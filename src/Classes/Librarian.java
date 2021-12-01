@@ -14,16 +14,11 @@ public class Librarian extends Person{
 
 
 
-    public void addbook(book b1,Library s) throws SQLException {
-        if(b1.isavailable()==true){
+    public static void addbook(book b1) throws SQLException {
+            connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`,`Price`,'Lib') VALUES ('" + b1.getTitle() + ",'" + b1.getId() + ",'" + b1.getAuthor() + ",'" + b1.getGenre() + ",'" + b1.getCount() + "',0,'" + b1.getPrice() + ",'" + b1.getLib() + "');");
 
-            connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`,`Price`) VALUES ('"+b1.getTitle()+",'"+b1.getId()+",'"+b1.getAuthor()+",'"+b1.getGenre()+",'"+b1.getCount()+"',0,'"+b1.getPrice()+"');");
-            connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
-        }
-
-        else
-            connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
     }
+
     public void removebook(book b1, Library z) throws SQLException {
         if (CanBeDeleted(b1)) {
             connect.testjdbc.connect("DELETE FROM `main`.`Books` WHERE (`Id`='" + b1.getId() + "');");
