@@ -107,7 +107,7 @@ public class BookView {
             filter += "WHERE Genre = '" + EnterGenre.getText() + "' ";
             Condition = true;
         }
-        if (!libChoices.getSelectionModel().isEmpty()) {
+        if (!libChoices.getSelectionModel().isEmpty() || !libChoices.getValue().equals("all")) {
             if (Condition)
                 filter += " AND ";
             filter += "WHERE Lib = '" + libChoices.getValue() + "' ";
