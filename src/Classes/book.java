@@ -16,13 +16,14 @@ public class book {
     private int price;
 
 
-    public book(String title,String id, String author, String genre,int count,int price){
+    public book(String title,String id, String author, String genre,String lib,int count,int price){
         this.title=title;
         this.id=id;
         this.author=author;
         this.genre = genre;
         this.count=count;
         this.price=price;
+        this.lib=lib;
 
     }
     public book(String id){
@@ -95,7 +96,6 @@ public class book {
     }
 
 
-    public int getPrice(){return price;}
 
     public LocalDate getStartDate(){return StartDate;}
     public LocalDate getEndDate(){return EndDate;}
@@ -104,24 +104,19 @@ public class book {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public int getPrice(){return price;}
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public int getCount() {
+        return count;
     }
 
     public String getGenre() {
@@ -130,6 +125,12 @@ public class book {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
 
@@ -145,8 +146,8 @@ public class book {
         EndDate = endDate;
     }
 
-    public int getCount() {
-        return count;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setCount(int count) {

@@ -1,149 +1,194 @@
-//package Controller;
-//
-//import java.net.URL;
-//import java.sql.*;
-//import java.util.ResourceBundle;
-//
-//import Classes.book;
-//import javafx.beans.Observable;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
-//import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.scene.control.Button;
-//import javafx.scene.control.TableColumn;
-//import javafx.scene.control.TableView;
-//import javafx.scene.control.TextField;
-//import javafx.scene.control.cell.PropertyValueFactory;
-//
-//public class BookView {
-//    ObservableList<book> list = FXCollections.observableArrayList();
-//
-//    @FXML
-//    private ResourceBundle resources;
-//
-//    @FXML
-//    private URL location;
-//
-//    @FXML
-//    private Button Add;
-//
-//
-//    @FXML
-//    private Button Delete;
-//
-//    @FXML
-//    private TextField EnterAuthor;
-//
-//    @FXML
-//    private TextField EnterGenre;
-//
-//    @FXML
-//    private TextField EnterId;
-//
-//    @FXML
-//    private TextField EnterTitle;
-//
-//    @FXML
-//    private TextField EnterTopic;
-//
-//    @FXML
-//    private TableColumn<book, String> Author;
-//
-//    @FXML
-//    private TableColumn<book, String> Genre;
-//
-//    @FXML
-//    private TableColumn<book, String> Id;
-//
-//    @FXML
-//    private TableColumn<book, String> Title;
-//
-//    @FXML
-//    private Button Search;
-//
-//    @FXML
-//    private TableView<book> table;
-//
-//    @FXML
-//    void AddBook(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void delete(ActionEvent event) {
-//
-//    }
-//
-//    @FXML
-//    void search(ActionEvent event) throws SQLException {
-//        String filter = "select * from 'main'.'Books' ";
-//        boolean Condition = false;
-//        System.out.println(EnterAuthor.getText());
-//        if (!EnterAuthor.getText().equals("")) {
-//            filter+="WHERE Title = '"+EnterAuthor.getText()+"' ";
-//            Condition = true;
-//        }
-//        if (!EnterTitle.getText().equals("")) {
-//            if (Condition)
-//                filter += " AND ";
-//            filter+="WHERE Author = '"+EnterTitle.getText()+"' ";
-//            Condition = true;
-//        }
-//        if (!EnterId.getText().equals("")) {
-//            if (Condition)
-//                filter += " AND ";
-//            filter+="WHERE Id = '"+EnterId.getText()+"' ";
-//            Condition = true;
-//        }
-//        if (!EnterGenre.getText().equals("")) {
-//            if (Condition)
-//                filter += " AND ";
-//            filter+="WHERE Genre = '"+EnterGenre.getText()+"' ";
-//            Condition = true;
-//        }
-//        filter+=" ;";
-//        System.out.println(filter);
-//        if(Condition) {
-//
-//            loadTables(filter);
-//        }
-//    }
-//
-//    @FXML
-//    void initialize() throws Exception {
-//
-//        initcol();
-//        loadTables("select * from Books");
-//
-//    }
-//
-//    private void loadTables(String filter) throws SQLException {
-//        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
-//        Connection c = DriverManager.getConnection(url);
-//        Statement s = c.createStatement();
-//        ResultSet rs = s.executeQuery(filter);
-//        list.clear();
-//        while (rs.next()) {
-//            String Titlex = rs.getString("Title");
-//            String Authorx = rs.getString("Author");
-//            String Idx = rs.getString("Id");
-//            String Genrex = rs.getString("Genre");
-//
-//            list.add(new book(Titlex, Idx, Authorx, Genrex));
-//            System.out.println(list);
-//        }
-//        table.getItems().clear();
-//        table.getItems().addAll(list);
-//        c.close();
-//
-//
-//    }
-//
-//    public void initcol() {
-//        Author.setCellValueFactory(new PropertyValueFactory<>("author"));
-//        Id.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        Title.setCellValueFactory(new PropertyValueFactory<>("title"));
-//        Genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-//    }
-//}
+package Controller;
+
+import java.net.URL;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import Classes.book;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+public class BookView {
+
+
+    public TextField EnterPrice;
+    public TextField EnterCount;
+    public ChoiceBox<Object> libChoices;
+    ObservableList<book> list = FXCollections.observableArrayList();
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Button Add;
+
+
+    @FXML
+    private Button Delete;
+
+    @FXML
+    private TextField EnterAuthor;
+
+    @FXML
+    private TextField EnterGenre;
+
+    @FXML
+    private TextField EnterId;
+
+    @FXML
+    private TextField EnterTitle;
+    @FXML
+    private TableColumn<book, Integer> Count;
+    @FXML
+    private TableColumn<book, Integer> Price;
+    @FXML
+    private TableColumn<book, String> Lib;
+
+    @FXML
+    private TableColumn<book, String> Author;
+
+    @FXML
+    private TableColumn<book, String> Genre;
+
+    @FXML
+    private TableColumn<book, String> Id;
+
+    @FXML
+    private TableColumn<book, String> Title;
+
+    @FXML
+    private Button Search;
+
+    @FXML
+    private TableView<book> table;
+
+    @FXML
+    void AddBook(ActionEvent event) {
+
+    }
+
+    @FXML
+    void delete(ActionEvent event) {
+
+    }
+
+    @FXML
+    void search(ActionEvent event) throws SQLException {
+        String filter = "select * from 'main'.'Books' ";
+        boolean Condition = false;
+        System.out.println(EnterAuthor.getText());
+        if (!EnterAuthor.getText().equals("")) {
+            filter += "WHERE Title = '" + EnterAuthor.getText() + "' ";
+            Condition = true;
+        }
+        if (!EnterTitle.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter += "WHERE Author = '" + EnterTitle.getText() + "' ";
+            Condition = true;
+        }
+        if (!EnterId.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter += "WHERE Id = '" + EnterId.getText() + "' ";
+            Condition = true;
+        }
+        if (!EnterGenre.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter += "WHERE Genre = '" + EnterGenre.getText() + "' ";
+            Condition = true;
+        }
+        if (!libChoices.getSelectionModel().isEmpty()) {
+            if (Condition)
+                filter += " AND ";
+            filter += "WHERE Lib = '" + libChoices.getValue() + "' ";
+            Condition = true;
+        }
+        if (!EnterPrice.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter += "WHERE Price = '" + Price.getText() + "' ";
+            Condition = true;
+        }
+        if (!EnterCount.getText().equals("")) {
+            if (Condition)
+                filter += " AND ";
+            filter += "WHERE Count = '" + Count.getText() + "' ";
+            Condition = true;
+        }
+        filter += " ;";
+        System.out.println(filter);
+        if (Condition) {
+
+            loadTables(filter);
+        }
+    }
+
+    @FXML
+    void initialize() throws Exception {
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery("select * from library");
+        ArrayList<String> libraries = new ArrayList<>();
+        int i = 0;
+        while (rs.next()) {
+            libraries.add(rs.getString("name"));
+        }
+        libChoices.setItems(FXCollections.observableArrayList(libraries));
+        c.close();
+
+
+
+        initcol();
+        loadTables("select * from Books");
+
+    }
+
+    private void loadTables(String filter) throws SQLException {
+        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection c = DriverManager.getConnection(url);
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery(filter);
+        list.clear();
+        while (rs.next()) {
+            String Titlex = rs.getString("Title");
+            String Authorx = rs.getString("Author");
+            String Idx = rs.getString("Id");
+            String Genrex = rs.getString("Genre");
+            String libx = rs.getString("Lib");
+            int countx = rs.getInt("Count");
+            int price = rs.getInt("Price");
+
+            list.add(new book(Titlex, Idx, Authorx, Genrex, libx, countx, price));
+            System.out.println(list);
+        }
+        table.getItems().clear();
+        table.getItems().addAll(list);
+        c.close();
+
+
+    }
+
+    public void initcol() {
+        Author.setCellValueFactory(new PropertyValueFactory<>("author"));
+        Id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        Title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        Genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        Lib.setCellValueFactory(new PropertyValueFactory<>("lib"));
+        Count.setCellValueFactory(new PropertyValueFactory<>("count"));
+        Price.setCellValueFactory(new PropertyValueFactory<>("price"));
+    }
+
+    public void Update(ActionEvent actionEvent) {
+    }
+}
