@@ -72,7 +72,7 @@ public class userBookView {
             filter += "WHERE Genre = '" + EnterGenre.getText() + "' ";
             Condition = true;
         }
-        if (!libChoices.getSelectionModel().isEmpty())
+        if (!libChoices.getSelectionModel().isEmpty() || !libChoices.getValue().equals("all") )
         {
             if (Condition)
                 filter += " AND ";
