@@ -15,14 +15,14 @@ public class Librarian extends Person{
 
 
     public void addbook(book b1,Library s) throws SQLException {
-        if(b1.isavailable()==true){
+        if (b1.isavailable() == true) {
 
-            connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`,`Price`) VALUES ('"+b1.getTitle()+",'"+b1.getId()+",'"+b1.getAuthor()+",'"+b1.getGenre()+",'"+b1.getCount()+"',0,'"+b1.getPrice()+"');");
-            connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
+            connect.testjdbc.connect("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`,`Price`) VALUES ('" + b1.getTitle() + ",'" + b1.getId() + ",'" + b1.getAuthor() + ",'" + b1.getGenre() + ",'" + b1.getCount() + "',0,'" + b1.getPrice() + "');");
+            //connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
         }
 
-        else
-            connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
+//        else
+        // connect.testjdbc.connect("INSERT INTO `main`.`library`(`id`,`name``book_id`) VALUES ('"+s.getId()+",'"+s.getName()+",'"+b1.getId()+");");
     }
     public void removebook(book b1, Library z) throws SQLException {
         if (CanBeDeleted(b1)) {
@@ -59,7 +59,7 @@ public class Librarian extends Person{
     }
     public void addAdmin(Library L){
         connect.testjdbc.connect("INSERT INTO `main`.`person`(`Mail`,`Name`,`Password`,`Admin`) VALUES ('"+this.name+"','"+this.Email+"','"+this.Password+"','True');");
-        connect.testjdbc.connect("INSERT INTO `main`.`Librarians`(`person_id`,`library_id`) VALUES ('"+person_id+"','"+L.getId()+"');");
+        //connect.testjdbc.connect("INSERT INTO `main`.`Librarians`(`person_id`,`library_id`) VALUES ('"+person_id+"','"+L.getId()+"');");
 
     }
     public boolean IsDeadline(User k, book b ) throws SQLException {
