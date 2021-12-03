@@ -24,6 +24,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Login {
+    public static User User=null;
 
     @FXML
     private ResourceBundle resources;
@@ -88,14 +89,14 @@ public class Login {
         if(found && isadmin)
         {
             //create admin and login to the admin page
-            User Admin =new User(name,email,password,id);
+            User =new User(name,email,password,id);
             login(event,"adminPage.fxml");
 
         }
         else if (found)
         {
             //create user and login to the user page
-            User User =new User(name,email,password,id);
+            User =new User(name,email,password,id);
             login(event,"userPage.fxml");
 
         }
@@ -118,6 +119,10 @@ public class Login {
     @FXML
     void initialize() {
 
+    }
+    public static void reset()
+    {
+        User=null;
     }
 
     public void GosignUp(ActionEvent actionEvent) throws IOException {

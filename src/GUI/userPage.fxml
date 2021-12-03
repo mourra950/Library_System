@@ -9,7 +9,7 @@
       <Text layoutX="274.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Userpage" />
       <Button layoutX="524.0" layoutY="353.0" mnemonicParsing="false" onAction="#Logout" text="logout" />
       <Button layoutX="275.0" layoutY="179.0" mnemonicParsing="false" onAction="#OpenBooks" text="books" />
-      <Button layoutX="429.0" layoutY="153.0" mnemonicParsing="false" onAction="#OpenBorrowedBooks" text="books borrowed by me" />
+      <Button layoutX="427.0" layoutY="166.0" mnemonicParsing="false" onAction="#OpenBorrowedBooks" text="books borrowed by me" />
       <Button layoutX="37.0" layoutY="153.0" mnemonicParsing="false" onAction="#OpenLocation" text="location beta3 el maktaba" />
    </children>
 </AnchorPane>

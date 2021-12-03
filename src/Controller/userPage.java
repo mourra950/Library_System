@@ -17,7 +17,15 @@ import java.util.Objects;
 public class userPage {
 
     @FXML
-    void Logout(ActionEvent event) {
+    void Logout(ActionEvent event) throws IOException {
+        Login.reset();
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/LoginPage.fxml")));
+        Scene Scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Borrow page");
+        stage.setScene(Scene);
+        stage.centerOnScreen();
+        stage.show();
 
     }
 
@@ -33,7 +41,14 @@ public class userPage {
     }
 
     @FXML
-    void OpenBorrowedBooks(ActionEvent event) {
+    void OpenBorrowedBooks(ActionEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/userBorrowView.fxml")));
+        Scene Scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("borrow");
+        stage.setScene(Scene);
+        stage.centerOnScreen();
+        stage.show();
 
     }
 
