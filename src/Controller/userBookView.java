@@ -48,35 +48,56 @@ public class userBookView {
     @FXML
     void search(ActionEvent event) throws SQLException {
         String filter = "select * from 'main'.'Books' ";
+        boolean c2=false;
         boolean Condition = false;
-        System.out.println(EnterAuthor.getText());
+
         if (!EnterAuthor.getText().equals("")) {
-            filter += "WHERE Title = '" + EnterAuthor.getText() + "' ";
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
+                filter += "Title = '" + EnterAuthor.getText() + "' ";
             Condition = true;
         }
         if (!EnterTitle.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Author = '" + EnterTitle.getText() + "' ";
+            filter += " Author = '" + EnterTitle.getText() + "' ";
             Condition = true;
         }
         if (!EnterId.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Id = '" + EnterId.getText() + "' ";
+            filter += " Id = '" + EnterId.getText() + "' ";
             Condition = true;
         }
         if (!EnterGenre.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Genre = '" + EnterGenre.getText() + "' ";
+            filter += " Genre = '" + EnterGenre.getText() + "' ";
             Condition = true;
         }
         if (!libChoices.getSelectionModel().isEmpty() || !libChoices.getValue().equals("all") )
         {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Lib = '" + libChoices.getValue() + "' ";
+            filter += " Lib = '" + libChoices.getValue() + "' ";
             Condition = true;
         }
         filter += " ;";

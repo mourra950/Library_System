@@ -25,8 +25,7 @@ import javafx.stage.Stage;
 public class BookView {
 
 
-    public TextField EnterPrice;
-    public TextField EnterCount;
+
     public ChoiceBox<Object> libChoices;
     ObservableList<book> list = FXCollections.observableArrayList();
 
@@ -39,6 +38,8 @@ public class BookView {
     @FXML
     private Button Add;
 
+    public TextField EnterPrice;
+    public TextField EnterCount;
 
     @FXML
     private Button Delete;
@@ -55,9 +56,9 @@ public class BookView {
     @FXML
     private TextField EnterTitle;
     @FXML
-    private TableColumn<book, Integer> Count;
+    private TableColumn<book, String> Count;
     @FXML
-    private TableColumn<book, Integer> Price;
+    private TableColumn<book, String> Price;
     @FXML
     private TableColumn<book, String> Lib;
 
@@ -90,13 +91,21 @@ public class BookView {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("select * from Books WHERE Title = '" + EnterTitle.getText() + "' ;");//WHERE Title = '" + EnterTitle.getText() + "' AND WHERE Lib = '" + libChoices.getValue() + "'
             while (rs.next()) {
-                condition = true;
+                if (rs.getString("Lib").equals(libChoices.getValue()))
+                    condition = true;
             }
-
+            c.close();
             if (!condition) {
-                System.out.println("sadwdawdawd");
+
                 String z = "0";
-                s.executeUpdate("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`,`Price`,'Lib') VALUES ('" + EnterTitle.getText() + ",'" + EnterId.getText() + ",'" + EnterAuthor.getText() + ",'" + EnterGenre.getText() + ",'" + EnterCount + "','"+z+"','" + EnterPrice.getText() + ",'" + libChoices.getValue() + "');");
+                Connection ca = DriverManager.getConnection(url);
+                PreparedStatement input = ca.prepareStatement("INSERT INTO `main`.`Books`(`Title`,`Id`,`Author`,`Genre`,`Count`,`BorrowCount`,`Price`,'Lib') VALUES ('" + EnterTitle.getText() + "','" + EnterId.getText() + "','" + EnterAuthor.getText() + "','" + EnterGenre.getText() + "','" + EnterCount.getText() + "','" + z + "','" + EnterPrice.getText() + "','" + libChoices.getValue() + "');");
+
+                input.executeUpdate();
+
+                ca.close();
+                loadTables("select * from Books");
+
 
             } else {
                 AlertBox.display("can not add", "book already in the library");
@@ -112,54 +121,80 @@ public class BookView {
     @FXML
     void search(ActionEvent event) throws SQLException {
         String filter = "select * from Books ";
+        boolean c2=false;
         boolean Condition = false;
-        System.out.println(EnterAuthor.getText());
         if (!EnterAuthor.getText().equals("")) {
-            filter += "WHERE Author = '" + EnterAuthor.getText() + "' ";
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
+            filter += " Author = '" + EnterAuthor.getText() + "' ";
             Condition = true;
         }
         if (!EnterTitle.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Title = '" + EnterTitle.getText() + "' ";
+            filter += " Title = '" + EnterTitle.getText() + "' ";
             Condition = true;
         }
         if (!EnterId.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Id = '" + EnterId.getText() + "' ";
+            filter += " Id = '" + EnterId.getText() + "' ";
             Condition = true;
         }
         if (!EnterGenre.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Genre = '" + EnterGenre.getText() + "' ";
+            filter += " Genre = '" + EnterGenre.getText() + "' ";
             Condition = true;
         }
         if (!libChoices.getSelectionModel().isEmpty() && !libChoices.getValue().equals("all")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Lib = '" + libChoices.getValue() + "' ";
+            filter += " Lib = '" + libChoices.getValue() + "' ";
             Condition = true;
         }
         if (!EnterPrice.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Price = '" + Price.getText() + "' ";
+            filter += " Price = '" + EnterPrice.getText() + "' ";
             Condition = true;
         }
         if (!EnterCount.getText().equals("")) {
+            if(!c2) {
+                filter += " WHERE ";
+                c2=true;
+            }
             if (Condition)
                 filter += " AND ";
-            filter += "WHERE Count = '" + Count.getText() + "' ";
+            filter += " Count = '" + EnterCount.getText() + "' ";
             Condition = true;
         }
-        filter += " ;";
         System.out.println(filter);
-        if (Condition) {
 
             loadTables(filter);
-        }
+
     }
 
     @FXML
@@ -194,11 +229,11 @@ public class BookView {
             String Idx = rs.getString("Id");
             String Genrex = rs.getString("Genre");
             String libx = rs.getString("Lib");
-            int countx = rs.getInt("Count");
-            int price = rs.getInt("Price");
+            String countx = rs.getString("Count");
+            String price = rs.getString("Price");
 
             list.add(new book(Titlex, Idx, Authorx, Genrex, libx, countx, price));
-            System.out.println(list);
+
         }
         table.getItems().clear();
         table.getItems().addAll(list);

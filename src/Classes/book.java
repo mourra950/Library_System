@@ -12,11 +12,11 @@ public class book {
     private LocalDate StartDate;
     private LocalDate EndDate;
     private int BorrowCount=0;
-    private int count;
-    private int price;
+    private String count;
+    private String price;
 
 
-    public book(String title,String id, String author, String genre,String lib,int count,int price){
+    public book(String title,String id, String author, String genre,String lib,String count,String price){
         this.title=title;
         this.id=id;
         this.author=author;
@@ -62,7 +62,7 @@ public class book {
         while(rs.next()){
 
             if(rs.getString(2).equals(id)){
-                k =rs.getInt(5);
+                k =Integer.parseInt( rs.getString(5));
 
             }
         }
@@ -79,14 +79,12 @@ public class book {
         while(rs.next()){
 
             if(rs.getString(2).equals(id)){
-                k =rs.getInt(6);
-
+                k =Integer.parseInt( rs.getString(6));
             }
         }
         c.close();
         return k;
     }
-    //kamlha ya ziad ya zeft
     public static void most_popular()throws SQLException{
         String url = "jdbc:sqlite:src/DB/LibraryDB.db";
         Connection c = DriverManager.getConnection(url);
@@ -104,7 +102,7 @@ public class book {
         return id;
     }
 
-    public int getPrice(){return price;}
+    public String getPrice(){return price;}
 
     public String getTitle() {
         return title;
@@ -115,7 +113,7 @@ public class book {
         return author;
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
@@ -150,7 +148,7 @@ public class book {
         this.id = id;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
 
