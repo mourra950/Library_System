@@ -42,4 +42,14 @@ public class adminPage {
         stage.centerOnScreen();
         stage.show();
     }
+
+    public void gotoBorrow(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/adminBorrowView.fxml")));
+        Scene Scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("main");
+        stage.setScene(Scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
 }

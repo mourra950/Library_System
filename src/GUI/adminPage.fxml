@@ -12,6 +12,6 @@
       <Button layoutX="405.0" layoutY="86.0" mnemonicParsing="false" onAction="#gotobooks" text="book view"/>
       <Button layoutX="104.0" layoutY="100.0" mnemonicParsing="false" onAction="#gotolibs" text="lib view"/>
       <Button layoutX="265.0" layoutY="302.0" mnemonicParsing="false" onAction="#logout" text="Logout"/>
-      <Button layoutX="97.0" layoutY="289.0" mnemonicParsing="false" onAction="#gotobooks" text="borrow and returns"/>
+      <Button layoutX="97.0" layoutY="289.0" mnemonicParsing="false" onAction="#gotoBorrow" text="borrow and returns"/>
    </children>
 </AnchorPane>

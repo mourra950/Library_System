@@ -9,7 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -19,8 +22,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class userBookView {
+public class adminBorrowView {
 
+    public TextField EnterB;
     ObservableList<book> list = FXCollections.observableArrayList();
     public ChoiceBox<String> libChoices;
 
@@ -56,21 +60,21 @@ public class userBookView {
     @FXML
     void search(ActionEvent event) throws SQLException {
         String filter = "select * from 'main'.'Books' ";
-        boolean c2=false;
+        boolean c2 = false;
         boolean Condition = false;
 
         if (!EnterAuthor.getText().equals("")) {
-            if(!c2) {
+            if (!c2) {
                 filter += " WHERE ";
-                c2=true;
+                c2 = true;
             }
-                filter += "Title = '" + EnterAuthor.getText() + "' ";
+            filter += "Title = '" + EnterAuthor.getText() + "' ";
             Condition = true;
         }
         if (!EnterTitle.getText().equals("")) {
-            if(!c2) {
+            if (!c2) {
                 filter += " WHERE ";
-                c2=true;
+                c2 = true;
             }
             if (Condition)
                 filter += " AND ";
@@ -78,9 +82,9 @@ public class userBookView {
             Condition = true;
         }
         if (!EnterId.getText().equals("")) {
-            if(!c2) {
+            if (!c2) {
                 filter += " WHERE ";
-                c2=true;
+                c2 = true;
             }
             if (Condition)
                 filter += " AND ";
@@ -88,18 +92,17 @@ public class userBookView {
             Condition = true;
         }
         if (!EnterGenre.getText().equals("")) {
-            if(!c2) {
+            if (!c2) {
                 filter += " WHERE ";
-                c2=true;
+                c2 = true;
             }
             if (Condition)
                 filter += " AND ";
             filter += " Genre = '" + EnterGenre.getText() + "' ";
             Condition = true;
         }
-        if (!libChoices.getSelectionModel().isEmpty() || !libChoices.getValue().equals("all") )
-        {
-            if(!c2) {
+        if (!libChoices.getSelectionModel().isEmpty() || !libChoices.getValue().equals("all")) {
+            if (!c2) {
                 filter += " WHERE ";
             }
             if (Condition)
@@ -165,7 +168,7 @@ public class userBookView {
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
-        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/userPage.fxml")));
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/adminPage.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("main");
@@ -174,8 +177,54 @@ public class userBookView {
         stage.show();
     }
 
-    public void borrow(ActionEvent actionEvent) {
+    public void borrow(ActionEvent actionEvent) throws SQLException {
+        boolean found = false;
+        String Price = null;
+        if (!EnterAuthor.getText().equals("") && !EnterTitle.getText().equals("") && !EnterId.getText().equals("") && !EnterGenre.getText().equals("") && !libChoices.getSelectionModel().isEmpty()) {
+            String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("select * from Books  WHERE  Author = '" + Author.getText() + "'  AND  Title = '" + Title.getText() + "'  AND  Id = '" + Title.getText() + "'  AND  Genre = '" + Genre.getText() + "'  AND  Lib = '" + libChoices.getValue() + "'");//WHERE Title = '" + EnterTitle.getText() + "' AND WHERE Lib = '" + libChoices.getValue() + "'
+            while (rs.next()) {
+                found = true;
+                Price = rs.getString("Price");
+            }
+            c.close();
+            if (found) {
+                boolean found2 = false;
+                String url2 = "jdbc:sqlite:src/DB/LibraryDB.db";
+                Connection c2 = DriverManager.getConnection(url2);
+                Statement s2 = c2.createStatement();
+                ResultSet rs2 = s2.executeQuery("select * from person  WHERE  id = '" + EnterB.getText() + "'  ");
+                while (rs2.next()) {
+                    found2 = true;
+                }
+                if (found2) {
+                    String z = "0";
+                    Connection ca = DriverManager.getConnection(url);
+                    PreparedStatement input = ca.prepareStatement("INSERT INTO `main`.`Borrowed`('PersonId',`Title`,`Id`,`Author`,`Genre`,`Price`,'Lib') VALUES ('" + EnterB.getText() + "','" + EnterTitle.getText() + "','" + EnterId.getText() + "','" + EnterAuthor.getText() + "','" + EnterGenre.getText() + "','" + Price + "','" + libChoices.getValue() + "');");
+
+                    input.executeUpdate();
+
+                    ca.close();
+                } else {
+                    AlertBox.display("not found", "user not found he needs to register");
+                }
+            } else {
+                AlertBox.display("Not found", "book is not in this library");
+            }
+
+        } else {
+            AlertBox.display("error", "fill details to complete borrow");
+        }
     }
 
 
+    public void clickme(MouseEvent mouseEvent) {
+        EnterAuthor.setText(table.getSelectionModel().getSelectedItem().getAuthor());
+        EnterGenre.setText(table.getSelectionModel().getSelectedItem().getGenre());
+        EnterId.setText(table.getSelectionModel().getSelectedItem().getId());
+        EnterTitle.setText(table.getSelectionModel().getSelectedItem().getTitle());
+        libChoices.setValue(table.getSelectionModel().getSelectedItem().getLib());
+    }
 }
