@@ -180,11 +180,12 @@ public class adminBorrowView {
     public void borrow(ActionEvent actionEvent) throws SQLException {
         boolean found = false;
         String Price = null;
-        if (!EnterAuthor.getText().equals("") && !EnterTitle.getText().equals("") && !EnterId.getText().equals("") && !EnterGenre.getText().equals("") && !libChoices.getSelectionModel().isEmpty()) {
+
+        if (!EnterAuthor.getText().equals("") && !EnterTitle.getText().equals("") && !EnterId.getText().equals("") && !EnterGenre.getText().equals("") && !libChoices.getValue().isEmpty()) {
             String url = "jdbc:sqlite:src/DB/LibraryDB.db";
             Connection c = DriverManager.getConnection(url);
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from Books  WHERE  Author = '" + Author.getText() + "'  AND  Title = '" + Title.getText() + "'  AND  Id = '" + Title.getText() + "'  AND  Genre = '" + Genre.getText() + "'  AND  Lib = '" + libChoices.getValue() + "'");//WHERE Title = '" + EnterTitle.getText() + "' AND WHERE Lib = '" + libChoices.getValue() + "'
+            ResultSet rs = s.executeQuery("select * from Books  WHERE  Author = '" + EnterAuthor.getText() + "'  AND  Title = '" + EnterTitle.getText() + "'  AND  Id = '" + EnterId.getText() + "'  AND  Genre = '" + EnterGenre.getText() + "'  AND  Lib = '" + libChoices.getValue() + "'");//WHERE Title = '" + EnterTitle.getText() + "' AND WHERE Lib = '" + libChoices.getValue() + "'
             while (rs.next()) {
                 found = true;
                 Price = rs.getString("Price");
