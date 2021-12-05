@@ -1,5 +1,6 @@
 package Controller;
 
+import Classes.User;
 import Classes.book;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.sql.*;
 import java.util.Objects;
 
 public class adminReturnView {
-    public TableColumn Lib1;
+
     @FXML
     private TextField EnterAuthor;
 
@@ -39,7 +41,6 @@ public class adminReturnView {
     @FXML
     private TextField EnterUser;
     ObservableList<book> list = FXCollections.observableArrayList();
-
     @FXML
     private TableColumn<book, String> Lib;
     @FXML
@@ -79,29 +80,32 @@ public class adminReturnView {
     }
 
     private void loadTables() throws SQLException {
-        String url = "jdbc:sqlite:src/DB/LibraryDB.db";
-        Connection c = DriverManager.getConnection(url);
-        Statement s = c.createStatement();
-        ResultSet rs = s.executeQuery("select * from Borrowed ");//WHERE PersonId = '"+Login.User.getPersonId()+"'
-        list.clear();
-        while (rs.next()) {
-            String Titlex = rs.getString("Title");
-            String Authorx = rs.getString("Author");
-            String Idx = rs.getString("Id");
-            String Genrex = rs.getString("Genre");
-            String libx = rs.getString("Lib");
+        if (!EnterUser.getText().isEmpty()) {
+            String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+            Connection c = DriverManager.getConnection(url);
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery("select * from Borrowed WHERE PersonId='" + EnterUser.getText() + "'  ");//WHERE PersonId = '"+Login.User.getPersonId()+"'
+            list.clear();
+            while (rs.next()) {
+                String Titlex = rs.getString("Title");
+                String Authorx = rs.getString("Author");
+                String Idx = rs.getString("Id");
+                String Genrex = rs.getString("Genre");
+                String libx = rs.getString("Lib");
 
-            list.add(new book(Titlex, Idx, Authorx, Genrex, libx));
-            System.out.println(list);
+
+                list.add(new book(Titlex, Idx, Authorx, Genrex, libx));
+                
+            }
+            table.getItems().clear();
+            table.getItems().addAll(list);
+            c.close();
+
         }
-        table.getItems().clear();
-        table.getItems().addAll(list);
-        c.close();
-
-
     }
 
     public void initcol() {
+
         Author.setCellValueFactory(new PropertyValueFactory<>("author"));
         Id.setCellValueFactory(new PropertyValueFactory<>("id"));
         Title.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -118,10 +122,10 @@ public class adminReturnView {
             String url = "jdbc:sqlite:src/DB/LibraryDB.db";
             Connection c = DriverManager.getConnection(url);
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from library Where Author='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "' ");//WHERE PersonId = '"+Login.User.getPersonId()+"'
+            ResultSet rs = s.executeQuery("select * from Books Where Author ='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "' ");//WHERE PersonId = '"+Login.User.getPersonId()+"'
             rs.next();
             String Price = rs.getString("Price");
-            PreparedStatement input = c.prepareStatement("DELETE FROM Borrowed WHERE PersonId ='" + EnterUser.getText() + "' AND Author='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "' LIMIT 1;");
+            PreparedStatement input = c.prepareStatement("DELETE FROM Borrowed WHERE PersonId ='" + EnterUser.getText() + "' AND Author='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "';");
             input.executeUpdate();
             loadTables();
             c.close();
@@ -129,5 +133,14 @@ public class adminReturnView {
         } else {
             AlertBox.display("error", "fill the nescacassery info");
         }
+    }
+
+    public void clickme(MouseEvent mouseEvent) {
+        EnterAuthor.setText(table.getSelectionModel().getSelectedItem().getAuthor());
+        EnterGenre.setText(table.getSelectionModel().getSelectedItem().getGenre());
+        EnterId.setText(table.getSelectionModel().getSelectedItem().getId());
+        EnterTitle.setText(table.getSelectionModel().getSelectedItem().getTitle());
+        EnterLib.setText(table.getSelectionModel().getSelectedItem().getLib());
+
     }
 }

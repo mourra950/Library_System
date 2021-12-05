@@ -7,23 +7,44 @@ public class book {
     private String title;
     private String lib;
     private String id;
+
+    public book(String title, String lib, String id, String author, String genre, String user) {
+        this.title = title;
+        this.lib = lib;
+        this.id = id;
+        this.author = author;
+        this.genre = genre;
+        this.user = user;
+    }
+
     private String author;
     private String genre;
+
+
+    private String user;
     private LocalDate StartDate;
     private LocalDate EndDate;
-    private int BorrowCount=0;
+    private int BorrowCount = 0;
     private String count;
     private String price;
 
 
-    public book(String title,String id, String author, String genre,String lib,String count,String price){
-        this.title=title;
-        this.id=id;
-        this.author=author;
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public book(String title, String id, String author, String genre, String lib, String count, String price) {
+        this.title = title;
+        this.id = id;
+        this.author = author;
         this.genre = genre;
-        this.count=count;
-        this.price=price;
-        this.lib=lib;
+        this.count = count;
+        this.price = price;
+        this.lib = lib;
 
     }
     public book(String id){

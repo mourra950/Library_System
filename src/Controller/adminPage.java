@@ -52,4 +52,14 @@ public class adminPage {
         stage.centerOnScreen();
         stage.show();
     }
+
+    public void gotoreturn(ActionEvent actionEvent) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/adminReturnView.fxml")));
+        Scene Scene = new Scene(parent);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("return");
+        stage.setScene(Scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
 }
