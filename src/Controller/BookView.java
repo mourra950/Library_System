@@ -252,7 +252,20 @@ public class BookView {
         Price.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    public void Update(ActionEvent actionEvent) {
+    public void Update(ActionEvent actionEvent) throws SQLException {
+        if (!EnterAuthor.getText().equals("") && !EnterTitle.getText().equals("") && !EnterId.getText().equals("") && !EnterGenre.getText().equals("") && !libChoices.getSelectionModel().isEmpty() && !EnterPrice.getText().equals("") && !EnterCount.getText().equals("")) {
+
+            String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+            Connection c2 = DriverManager.getConnection(url);
+            PreparedStatement input2 = c2.prepareStatement("DELETE from Books  WHERE  Author = '" + EnterAuthor.getText() + "'  AND  Title = '" + EnterTitle.getText() + "'  AND  Id = '" + EnterId.getText() + "'  AND  Genre = '" + EnterGenre.getText() + "'  AND  Lib = '" + libChoices.getValue() + "'  AND  Price = '" + EnterPrice.getText() + "'  AND  Count = '" + EnterCount.getText() + "';");
+            input2.executeUpdate();
+            c2.close();
+            Connection c3 = DriverManager.getConnection(url);
+            PreparedStatement input3 = c3.prepareStatement("DELETE from Borrowed  WHERE  Author = '" + EnterAuthor.getText() + "'  AND  Title = '" + EnterTitle.getText() + "'  AND  Id = '" + EnterId.getText() + "'  AND  Genre = '" + EnterGenre.getText() + "'  AND  Lib = '" + libChoices.getValue() + "'  AND  Price = '" + EnterPrice.getText() + "';");
+            input3.executeUpdate();
+            c3.close();
+            loadTables("select * from Books");
+        }
     }
 
     public void backToMain(ActionEvent actionEvent) throws IOException {

@@ -64,11 +64,10 @@
             </ImageView>
             <ButtonBar layoutX="519.0" layoutY="308.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button fx:id="RegButton" mnemonicParsing="false" onAction="#LoadRegister" text="Register" />
                 <Button fx:id="LogBut" mnemonicParsing="false" onAction="#LoginUser" text="Login" />
+                  <Button mnemonicParsing="false" onAction="#GosignUp" text="Sign Up"/>
               </buttons>
             </ButtonBar>
-            <Button layoutX="722.0" layoutY="451.0" mnemonicParsing="false" onAction="#GosignUp" text="Sign Up" />
       </children>
     </AnchorPane>
   </children>

@@ -56,14 +56,13 @@ public class libView {
     void Update(ActionEvent event) throws SQLException {
         String url = "jdbc:sqlite:src/DB/LibraryDB.db";
         Connection c = DriverManager.getConnection(url);
-        PreparedStatement input = c.prepareStatement("DELETE FROM library WHERE name ='" + EnterId.getText() + "';");
+        PreparedStatement input = c.prepareStatement("DELETE FROM library WHERE id ='" + EnterId.getText() + "';");
         input.executeUpdate();
         loadTables();
         c.close();
         Connection c2 = DriverManager.getConnection(url);
         PreparedStatement input2 = c2.prepareStatement("DELETE FROM Borrowed WHERE Lib ='" + EnterId.getText() + "';");
         input2.executeUpdate();
-
         c2.close();
         Connection c3 = DriverManager.getConnection(url);
         PreparedStatement input3 = c3.prepareStatement("DELETE FROM Books WHERE Lib ='" + EnterId.getText() + "';");

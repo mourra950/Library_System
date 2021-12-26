@@ -10,30 +10,31 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
             prefWidth="652.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controller.adminReturnView">
-   <children>
-      <VBox layoutX="175.0" prefHeight="400.0" prefWidth="522.0">
-         <children>
-            <TableView fx:id="table" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                       minWidth="-Infinity" onMouseClicked="#clickme" prefHeight="400.0" prefWidth="479.0">
-               <columns>
-                  <TableColumn fx:id="Title" prefWidth="99.199951171875" text="Title"/>
-                  <TableColumn fx:id="Id" prefWidth="91.20001220703125" text="Id"/>
-                  <TableColumn fx:id="Author" prefWidth="85.5999755859375" text="Author"/>
-                  <TableColumn fx:id="Genre" prefWidth="98.4000244140625" text="Genre"/>
-                  <TableColumn fx:id="Lib" prefWidth="102.39990234375" text="Lib"/>
-               </columns>
-            </TableView>
-         </children>
-      </VBox>
-      <Button fx:id="back" layoutX="4.0" layoutY="373.0" mnemonicParsing="false" onAction="#back" text="back"/>
-      <Button fx:id="Refresh" layoutX="112.0" layoutY="373.0" mnemonicParsing="false" onAction="#Refresh"
-              text="Refresh"/>
-      <TextField fx:id="EnterUser" layoutX="14.0" layoutY="14.0" promptText="User ID"/>
-      <TextField fx:id="EnterLib" layoutX="14.0" layoutY="216.0" promptText="EnterLib"/>
-      <TextField fx:id="EnterId" layoutX="14.0" layoutY="95.0" promptText="EnterId"/>
-      <TextField fx:id="EnterTitle" layoutX="14.0" layoutY="50.0" promptText="EnterTitle"/>
-      <TextField fx:id="EnterAuthor" layoutX="14.0" layoutY="135.0" promptText="EnterAuthor"/>
-      <TextField fx:id="EnterGenre" layoutX="14.0" layoutY="175.0" promptText="EnterGenre"/>
-      <Button layoutX="40.0" layoutY="304.0" mnemonicParsing="false" onAction="#Return" text="Confirm Return"/>
-   </children>
+    <children>
+        <VBox layoutX="175.0" prefHeight="400.0" prefWidth="522.0">
+            <children>
+                <TableView fx:id="table" editable="true" maxHeight="-Infinity" maxWidth="-Infinity"
+                           minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#clickme" prefHeight="400.0"
+                           prefWidth="479.0">
+                    <columns>
+                        <TableColumn fx:id="Title" prefWidth="99.199951171875" text="Title"/>
+                        <TableColumn fx:id="Id" prefWidth="91.20001220703125" text="Id"/>
+                        <TableColumn fx:id="Author" prefWidth="85.5999755859375" text="Author"/>
+                        <TableColumn fx:id="Genre" prefWidth="98.4000244140625" text="Genre"/>
+                        <TableColumn fx:id="Lib" prefWidth="102.39990234375" text="Lib"/>
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+        <Button fx:id="back" layoutX="4.0" layoutY="373.0" mnemonicParsing="false" onAction="#back" text="back"/>
+        <Button fx:id="Refresh" layoutX="112.0" layoutY="373.0" mnemonicParsing="false" onAction="#Refresh"
+                text="Refresh"/>
+        <TextField fx:id="EnterUser" layoutX="14.0" layoutY="14.0" promptText="User ID"/>
+        <TextField fx:id="EnterLib" layoutX="14.0" layoutY="216.0" promptText="EnterLib"/>
+        <TextField fx:id="EnterId" layoutX="14.0" layoutY="95.0" promptText="EnterId"/>
+        <TextField fx:id="EnterTitle" layoutX="14.0" layoutY="50.0" promptText="EnterTitle"/>
+        <TextField fx:id="EnterAuthor" layoutX="14.0" layoutY="135.0" promptText="EnterAuthor"/>
+        <TextField fx:id="EnterGenre" layoutX="14.0" layoutY="175.0" promptText="EnterGenre"/>
+        <Button layoutX="40.0" layoutY="304.0" mnemonicParsing="false" onAction="#Return" text="Confirm Return"/>
+    </children>
 </AnchorPane>
