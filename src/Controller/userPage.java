@@ -34,7 +34,7 @@ public class userPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/userBookView.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Books");
+        stage.setTitle("Books view");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -45,7 +45,7 @@ public class userPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/userBorrowView.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("borrow");
+        stage.setTitle("borrowed books view");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -56,7 +56,7 @@ public class userPage {
     void OpenLocation(ActionEvent event) {
         Desktop desktop = java.awt.Desktop.getDesktop();
         try {
-            URI oURL = new URI("https://goo.gl/maps/TiaJysXFDkEJnSzo7");
+            URI oURL = new URI("https://github.com/mourra950/Library_System");
             desktop.browse(oURL);
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();

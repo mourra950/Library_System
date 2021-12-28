@@ -76,7 +76,6 @@ public class adminReturnView {
     void initialize() throws SQLException {
         initcol();
         loadTables();
-
     }
 
     private void loadTables() throws SQLException {
@@ -115,6 +114,7 @@ public class adminReturnView {
 
     public void Refresh(ActionEvent actionEvent) throws SQLException {
         loadTables();
+        AlertBox.display("refreshed", "table refreshed");
     }
 
     public void Return(ActionEvent actionEvent) throws SQLException {

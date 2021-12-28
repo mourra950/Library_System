@@ -44,7 +44,7 @@ public class userBorrowView {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/userPage.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("Borrow page");
+        stage.setTitle("main user page");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -92,5 +92,6 @@ public class userBorrowView {
 
     public void Refresh(ActionEvent actionEvent) throws SQLException {
         loadTables();
+        AlertBox.display("refreshed", "system have been refreshed");
     }
 }

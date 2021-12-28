@@ -67,6 +67,7 @@ public class signUpPage {
                 if (!found) {
                     User user = new User(Name.getText(), Mail.getText(), Pass.getText(), Mail.getText());
                     Librarian.adduser(user);
+                    AlertBox.display("success", "user have successfully sign up");
                     changescene(event, "LoginPage.fxml");
                 } else {
                     AlertBox.display("already used", "this mail is already used");

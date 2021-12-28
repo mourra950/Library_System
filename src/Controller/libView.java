@@ -42,12 +42,17 @@ public class libView {
 
     @FXML
     void AddBook(ActionEvent event) throws SQLException {
-        if (!EnterLibAdress.getText().equals("") && !EnterLibName.getText().equals("")) {
-            String url = "jdbc:sqlite:src/DB/LibraryDB.db";
-            Connection c = DriverManager.getConnection(url);
-            PreparedStatement input = c.prepareStatement("INSERT INTO `main`.`library`(`adress`,`name`) VALUES ('" + EnterLibAdress.getText() + "','" + EnterLibName.getText() + "') ");
-            input.executeUpdate();
-            c.close();
+        try {
+            if (!EnterLibAdress.getText().equals("") && !EnterLibName.getText().equals("")) {
+                String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+                Connection c = DriverManager.getConnection(url);
+                PreparedStatement input = c.prepareStatement("INSERT INTO `main`.`library`(`adress`,`name`) VALUES ('" + EnterLibAdress.getText() + "','" + EnterLibName.getText() + "') ");
+                input.executeUpdate();
+                c.close();
+                AlertBox.display("success", "book added successfully");
+            }
+        } catch (Exception E) {
+            AlertBox.display("error", "something went wrong");
         }
         loadTables();
     }
@@ -69,6 +74,7 @@ public class libView {
         input3.executeUpdate();
 
         c3.close();
+        AlertBox.display("success", "book deleted successfully from db");
     }
 
     @FXML

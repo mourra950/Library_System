@@ -171,7 +171,7 @@ public class adminBorrowView {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/adminPage.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("main");
+        stage.setTitle("main admin page");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();

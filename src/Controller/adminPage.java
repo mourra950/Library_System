@@ -15,7 +15,7 @@ public class adminPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/BookView.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("main");
+        stage.setTitle("admin books view");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -25,7 +25,7 @@ public class adminPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/libView.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("lib view");
+        stage.setTitle("admin lib view");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -37,7 +37,7 @@ public class adminPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/LoginPage.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("main");
+        stage.setTitle("Login page");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -47,7 +47,7 @@ public class adminPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/adminBorrowView.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("main");
+        stage.setTitle("borrow admin view");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();
@@ -57,7 +57,7 @@ public class adminPage {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/GUI/adminReturnView.fxml")));
         Scene Scene = new Scene(parent);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("return");
+        stage.setTitle("return admin page");
         stage.setScene(Scene);
         stage.centerOnScreen();
         stage.show();

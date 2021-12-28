@@ -34,7 +34,7 @@
       <ChoiceBox fx:id="libChoices" layoutX="15.0" layoutY="254.0" prefWidth="150.0" />
       <Button fx:id="Search" layoutX="15.0" layoutY="320.0" mnemonicParsing="false" onAction="#search" text="Search" />
       <Button fx:id="Add" layoutX="69.0" layoutY="320.0" mnemonicParsing="false" onAction="#AddBook" text="Add" />
-      <Button layoutX="110.0" layoutY="320.0" mnemonicParsing="false" onAction="#Update" text="Update" />
+      <Button layoutX="110.0" layoutY="320.0" mnemonicParsing="false" onAction="#Update" text="Delete"/>
       <Button layoutX="64.0" layoutY="361.0" mnemonicParsing="false" onAction="#backToMain" text="Back" />
    </children>
 </AnchorPane>
