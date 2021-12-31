@@ -266,7 +266,8 @@ public class BookView {
             c3.close();
             loadTables("select * from Books");
             AlertBox.display("success", "done");
-        }
+        } else
+            AlertBox.display("error", "not found");
     }
 
     public void backToMain(ActionEvent actionEvent) throws IOException {

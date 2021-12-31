@@ -9,10 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -180,6 +177,8 @@ public class adminBorrowView {
     public void borrow(ActionEvent actionEvent) throws SQLException {
         boolean found = false;
         String Price = null;
+        int index = 0;
+        int CO = 0;
 
         if (!EnterAuthor.getText().equals("") && !EnterTitle.getText().equals("") && !EnterId.getText().equals("") && !EnterGenre.getText().equals("") && !libChoices.getValue().isEmpty()) {
             String url = "jdbc:sqlite:src/DB/LibraryDB.db";
@@ -187,8 +186,14 @@ public class adminBorrowView {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("select * from Books  WHERE  Author = '" + EnterAuthor.getText() + "'  AND  Title = '" + EnterTitle.getText() + "'  AND  Id = '" + EnterId.getText() + "'  AND  Genre = '" + EnterGenre.getText() + "'  AND  Lib = '" + libChoices.getValue() + "'");//WHERE Title = '" + EnterTitle.getText() + "' AND WHERE Lib = '" + libChoices.getValue() + "'
             while (rs.next()) {
-                found = true;
-                Price = rs.getString("Price");
+                if (0 < Integer.parseInt(rs.getString("Count"))) {
+                    found = true;
+                    Price = rs.getString("Price");
+                    index = rs.getInt("index");
+
+
+                    CO = Integer.parseInt(rs.getString("BorrowCount"));
+                }
             }
             c.close();
             if (found) {
@@ -201,12 +206,20 @@ public class adminBorrowView {
                     found2 = true;
                 }
                 if (found2) {
+
                     String z = "0";
                     Connection ca = DriverManager.getConnection(url);
                     PreparedStatement input = ca.prepareStatement("INSERT INTO `main`.`Borrowed`('PersonId',`Title`,`Id`,`Author`,`Genre`,`Price`,'Lib') VALUES ('" + EnterB.getText() + "','" + EnterTitle.getText() + "','" + EnterId.getText() + "','" + EnterAuthor.getText() + "','" + EnterGenre.getText() + "','" + Price + "','" + libChoices.getValue() + "');");
 
                     input.executeUpdate();
+                    AlertBox.display("borrow success", EnterB.getText() + " has successfully borrowed");
+                    CO++;
+                    String nCO = String.valueOf(CO);
+                    String lib3 = libChoices.getValue();
 
+                    Statement input1 = ca.createStatement();
+                    System.out.println(CO);
+                    input1.executeUpdate("UPDATE `main`.`Books` SET `BorrowCount` = '" + nCO + "' WHERE (`index` == '" + index + "');");//`Title` = '" + EnterTitle.getText() + "' AND 'Lib' = '" + lib3 + "'
                     ca.close();
                 } else {
                     AlertBox.display("not found", "user not found he needs to register");

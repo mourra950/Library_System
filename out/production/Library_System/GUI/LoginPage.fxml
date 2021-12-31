@@ -65,7 +65,7 @@
             <ButtonBar layoutX="519.0" layoutY="308.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
                 <Button fx:id="LogBut" mnemonicParsing="false" onAction="#LoginUser" text="Login" />
-                  <Button mnemonicParsing="false" onAction="#GosignUp" text="Sign Up" />
+                  <Button mnemonicParsing="false" onAction="#GosignUp" text="Sign Up"/>
               </buttons>
             </ButtonBar>
       </children>

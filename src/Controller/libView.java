@@ -59,22 +59,32 @@ public class libView {
 
     @FXML
     void Update(ActionEvent event) throws SQLException {
+        String libname = null;
         String url = "jdbc:sqlite:src/DB/LibraryDB.db";
+        Connection ct = DriverManager.getConnection(url);
+        Statement s = ct.createStatement();
+
+        ResultSet rs = s.executeQuery("SELECT * FROM library WHERE id ='" + EnterId.getText() + "';");
+        while (rs.next()) {
+
+            libname = rs.getString(1);
+        }
+
         Connection c = DriverManager.getConnection(url);
         PreparedStatement input = c.prepareStatement("DELETE FROM library WHERE id ='" + EnterId.getText() + "';");
         input.executeUpdate();
         loadTables();
         c.close();
         Connection c2 = DriverManager.getConnection(url);
-        PreparedStatement input2 = c2.prepareStatement("DELETE FROM Borrowed WHERE Lib ='" + EnterId.getText() + "';");
+        PreparedStatement input2 = c2.prepareStatement("DELETE FROM Borrowed WHERE Lib ='" + libname + "';");
         input2.executeUpdate();
         c2.close();
         Connection c3 = DriverManager.getConnection(url);
-        PreparedStatement input3 = c3.prepareStatement("DELETE FROM Books WHERE Lib ='" + EnterId.getText() + "';");
+        PreparedStatement input3 = c3.prepareStatement("DELETE FROM Books WHERE Lib ='" + libname + "';");
         input3.executeUpdate();
 
         c3.close();
-        AlertBox.display("success", "book deleted successfully from db");
+        AlertBox.display("success", "library deleted successfully from db");
     }
 
     @FXML
