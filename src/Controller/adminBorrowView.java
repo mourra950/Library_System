@@ -186,13 +186,16 @@ public class adminBorrowView {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("select * from Books  WHERE  Author = '" + EnterAuthor.getText() + "'  AND  Title = '" + EnterTitle.getText() + "'  AND  Id = '" + EnterId.getText() + "'  AND  Genre = '" + EnterGenre.getText() + "'  AND  Lib = '" + libChoices.getValue() + "'");//WHERE Title = '" + EnterTitle.getText() + "' AND WHERE Lib = '" + libChoices.getValue() + "'
             while (rs.next()) {
-                if (0 < Integer.parseInt(rs.getString("Count"))) {
+                if (0 < Integer.parseInt(rs.getString("Count")) - Integer.parseInt(rs.getString("BorrowCount"))) {
                     found = true;
                     Price = rs.getString("Price");
                     index = rs.getInt("index");
 
 
                     CO = Integer.parseInt(rs.getString("BorrowCount"));
+                } else {
+                    AlertBox.display("error", "not availble ");
+                    return;
                 }
             }
             c.close();
