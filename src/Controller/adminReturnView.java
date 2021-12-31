@@ -94,7 +94,7 @@ public class adminReturnView {
 
 
                 list.add(new book(Titlex, Idx, Authorx, Genrex, libx));
-                
+
             }
             table.getItems().clear();
             table.getItems().addAll(list);
@@ -122,11 +122,19 @@ public class adminReturnView {
             String url = "jdbc:sqlite:src/DB/LibraryDB.db";
             Connection c = DriverManager.getConnection(url);
             Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery("select * from Books Where Author ='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "' ");//WHERE PersonId = '"+Login.User.getPersonId()+"'
+            ResultSet rs = s.executeQuery("select * from Books Where Author ='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "' ");
             rs.next();
             String Price = rs.getString("Price");
-            PreparedStatement input = c.prepareStatement("DELETE FROM Borrowed WHERE PersonId ='" + EnterUser.getText() + "' AND Author='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "';");
+            int CO = Integer.parseInt(rs.getString("BorrowCount"));
+            int index = rs.getInt("index");
+            CO--;
+            rs = s.executeQuery("select * from Borrowed Where Author ='" + EnterAuthor.getText() + "' AND Id +'" + EnterId.getText() + "' AND Lib ='" + EnterLib.getText() + "' AND Genre='" + EnterGenre.getText() + "' AND Title = '" + EnterTitle.getText() + "' ");
+            rs.next();
+            int bindex = rs.getInt("borrowindex");
+            PreparedStatement input = c.prepareStatement("DELETE FROM Borrowed WHERE borrowindex =='" + bindex + "' ");
             input.executeUpdate();
+            PreparedStatement input2 = c.prepareStatement("UPDATE `main`.`Books` SET `BorrowCount` = '" + String.valueOf(CO) + "' WHERE (`index` == '" + index + "');");
+            input2.executeUpdate();
             loadTables();
             c.close();
             AlertBox.display("price", "please collect " + Price + " USD ");
